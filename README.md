@@ -6,4 +6,4 @@ Platform hra v developmentu
 <p>- přidána kamera, který se pohybuje s hráčem</p>
 
 <h1>Update 0.0.1 | 6. 10. 2023</h1>
-<p>- přidán prototyp Hlavního Menu</p>
+<p>- přidán prototyp Hlavního Menu a načtení do scény hry</p>

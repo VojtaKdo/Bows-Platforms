@@ -1,5 +1,10 @@
 # Platformer
 Platform hra v developmentu
+<h1>Update 0.0.4 | 18. 11. 2023</h1>
+<p>- spraveny animace</p>
+<p>- přidána animace pro padání</p>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/e0c140a3-d9d0-4d12-9467-3c4cf123c23f" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.0.3 | 23. 10. 2023</h1>
 <p>- aktualizován hlavní charakter (Author: <a href="https://darkpixel-kronovi.itch.io/">Kronovi-</a> a link na jeho charaktera: <a href="https://darkpixel-kronovi.itch.io/archer-hero?download">Download Page</a>)</p>
 <p>- přidány Animace při nečinnosti, skákání a běžení</p>

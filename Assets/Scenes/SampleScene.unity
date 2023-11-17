@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f38f0a55ffd71b449781320ec963fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 5
   jumpPower: 5
   deadzone: -10
   playerRigidBody: {fileID: 1884401999}

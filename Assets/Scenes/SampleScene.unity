@@ -2687,8 +2687,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   jumpPower: 5
-  dashPower: 3
-  dashingTime: 0.5
+  dashPower: 4.5
+  dashingTime: 0.3
   dashingCooldown: 1
   numberOfDashes: 1
   dashesAvailable: 1

@@ -2687,9 +2687,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   jumpPower: 5
+  dashPower: 3
+  dashingTime: 0.5
+  dashingCooldown: 1
+  numberOfDashes: 1
+  dashesAvailable: 1
+  jumpingTime: 0.45
+  isJumping: 0
+  isDashing: 0
+  dashTrigger: 0
+  cancelDashTrigger: 0
+  canDash: 1
   deadzone: -10
-  playerRigidBody: {fileID: 1884401999}
   respawnZone: {fileID: 185139903}
+  playerRigidBody: {fileID: 1884401999}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

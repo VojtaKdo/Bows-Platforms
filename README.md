@@ -1,5 +1,12 @@
 # Platformer
 Platform hra v developmentu
+
+<h1>Update 0.0.5 | 9. 12. 2023</h1>
+<p>- přidána možnost dashnout</p>
+<p>- přidány animace pro dash</p>
+<p>- spravený animaci, aby se dělali ihned</p>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/0a9ee465-728e-4e2b-87b0-d2989e95eb51" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.0.4 | 18. 11. 2023</h1>
 <p>- spraveny animace</p>
 <p>- přidána animace pro padání</p>

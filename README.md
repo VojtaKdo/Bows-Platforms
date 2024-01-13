@@ -1,4 +1,4 @@
-![dash-ezgif com-resize](https://github.com/VojtaKdo/Platformer/assets/115611828/b43e69e8-3e90-4cbf-a752-0ed6257b018c)# Platformer
+# Platformer
 Platform hra v developmentu
 
 <h1>Update 0.0.5 | 9. 12. 2023</h1>

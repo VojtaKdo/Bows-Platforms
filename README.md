@@ -15,7 +15,7 @@ Platform hra v developmentu
 <h1>Update 0.0.3 | 23. 10. 2023</h1>
 <p>- aktualizován hlavní charakter (Author: <a href="https://darkpixel-kronovi.itch.io/">Kronovi-</a> a link na jeho charaktera: <a href="https://darkpixel-kronovi.itch.io/archer-hero?download">Download Page</a>)</p>
 <p>- přidány Animace při nečinnosti, skákání a běžení</p>
-<video src="https://github.com/VojtaKdo/Platformer/assets/115611828/fc105d59-b363-42ee-a378-7bffd684d367" alt="Prototyp" width="500px"/>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/fc105d59-b363-42ee-a378-7bffd684d367" alt="Prototyp" width="500px"/>
 
 <h1>Update 0.0.2 | 7. 10. 2023</h1>
 <p>- přídán TileMap (https://anokolisa.itch.io/sidescroller-pixelart-sprites-asset-pack-forest-16x16)</p>

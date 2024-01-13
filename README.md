@@ -1,6 +1,6 @@
 # Platformer
 Platform hra v developmentu
-[Movie_002.webm](https://github.com/VojtaKdo/Platformer/assets/115611828/4ac41f0d-f46c-4180-9dc9-5a865dd149e1)
+![Movie_002](https://github.com/VojtaKdo/Platformer/assets/115611828/ecaabd01-e888-409c-b8b5-d41b773edfd5)
 
 <h1>Update 0.0.5 | 9. 12. 2023</h1>
 <p>- přidána možnost dashnout</p>
@@ -16,7 +16,7 @@ Platform hra v developmentu
 <h1>Update 0.0.3 | 23. 10. 2023</h1>
 <p>- aktualizován hlavní charakter (Author: <a href="https://darkpixel-kronovi.itch.io/">Kronovi-</a> a link na jeho charaktera: <a href="https://darkpixel-kronovi.itch.io/archer-hero?download">Download Page</a>)</p>
 <p>- přidány Animace při nečinnosti, skákání a běžení</p>
-<video src="https://github.com/VojtaKdo/Platformer/assets/115611828/4ac41f0d-f46c-4180-9dc9-5a865dd149e1" alt="Prototyp" width="500px"/>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/ecaabd01-e888-409c-b8b5-d41b773edfd5" alt="Prototyp" width="500px"/>
 
 <h1>Update 0.0.2 | 7. 10. 2023</h1>
 <p>- přídán TileMap (https://anokolisa.itch.io/sidescroller-pixelart-sprites-asset-pack-forest-16x16)</p>

@@ -1,24 +1,12 @@
 # Platformer
 Platform hra v developmentu
-
-
-
-https://github.com/VojtaKdo/Platformer/assets/115611828/fd895e65-64bf-402f-a6dd-d3d57e56cf0f
-
-
-https://github.com/VojtaKdo/Platformer/assets/115611828/4278749a-c177-4bbf-b52b-8c6412bc3029
-
-
-
-https://github.com/VojtaKdo/Platformer/assets/115611828/25895779-97c4-48d0-afee-1adcff315f94
-
-
+![dash-ezgif com-resize](https://github.com/VojtaKdo/Platformer/assets/115611828/5c236e87-7898-4b42-85af-8da74893c3bd)
 
 <h1>Update 0.0.5 | 9. 12. 2023</h1>
 <p>- přidána možnost dashnout</p>
 <p>- přidány animace pro dash</p>
 <p>- spravený animace, aby se dělali ihned</p>
-<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/0a9ee465-728e-4e2b-87b0-d2989e95eb51" alt="Prototyp" width="500px"/>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/5c236e87-7898-4b42-85af-8da74893c3bd" alt="Prototyp" width="500px"/>
 
 <h1>Update 0.0.4 | 18. 11. 2023</h1>
 <p>- spraveny animace</p>

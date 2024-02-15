@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dash
+  m_Name: Normal_Attack_Loop_Beginning
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2114613988, guid: 6ea60c263d606874092d47887d6506d7, type: 3}
+      value: {fileID: 1831014532, guid: 19e8d5149ba3a4342ad45b9bb438ac25, type: 3}
     - time: 0.16666667
-      value: {fileID: 108460467, guid: 6ea60c263d606874092d47887d6506d7, type: 3}
+      value: {fileID: -1251155650, guid: 421a437e70c47484bb2cf4f5098d63b2, type: 3}
     - time: 0.33333334
-      value: {fileID: 2114613988, guid: 6ea60c263d606874092d47887d6506d7, type: 3}
+      value: {fileID: 679782221, guid: 421a437e70c47484bb2cf4f5098d63b2, type: 3}
+    - time: 0.6666667
+      value: {fileID: 679782221, guid: 421a437e70c47484bb2cf4f5098d63b2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,18 +50,19 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2114613988, guid: 6ea60c263d606874092d47887d6506d7, type: 3}
-    - {fileID: 108460467, guid: 6ea60c263d606874092d47887d6506d7, type: 3}
-    - {fileID: 2114613988, guid: 6ea60c263d606874092d47887d6506d7, type: 3}
+    - {fileID: 1831014532, guid: 19e8d5149ba3a4342ad45b9bb438ac25, type: 3}
+    - {fileID: -1251155650, guid: 421a437e70c47484bb2cf4f5098d63b2, type: 3}
+    - {fileID: 679782221, guid: 421a437e70c47484bb2cf4f5098d63b2, type: 3}
+    - {fileID: 679782221, guid: 421a437e70c47484bb2cf4f5098d63b2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.68333334
     m_OrientationOffsetY: 0
     m_Level: 0
-    m_CycleOffset: 0
+    m_CycleOffset: -1
     m_HasAdditiveReferencePose: 0
     m_LoopTime: 0
     m_LoopBlend: 0

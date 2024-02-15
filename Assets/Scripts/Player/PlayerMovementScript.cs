@@ -1,32 +1,38 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerMovementScript : MonoBehaviour
 {
-    //Movement
-    public float movementSpeed = 10;
-    public float jumpPower = 5;
-    public float dashPower = 10;
-    public float dashingTime = 2;
-    public float dashingCooldown = 2;
-    public float numberOfDashes = 1;
-    public float dashesAvailable = 1;
-    private float horizontal;
+    PlayerDamageScript playerDamage;
+    //Movement - left and right
+    [SerializeField] private float movementSpeed = 10;
+    [SerializeField] private float facingValue = 1;
+    public GameObject rotationPoint;
+    public bool canMove = true;
+    private bool isFacingLeft;
+    public float horizontal;
+
+    //Movement - jump
+    [SerializeField] private float jumpPower = 5;
     public double jumpingTime = 0.45;
-    private bool isFacingRight;
-    public bool isJumping;
-    public bool isDashing;
-    public bool dashTrigger;
-    public bool cancelDashTrigger;
-    public bool canDash = true;
-    
+    [SerializeField] public bool isJumping;
+
+    //Movement - dash
+    [SerializeField] private float dashPower = 10;
+    [SerializeField] private float dashingTime = 2;
+    [SerializeField] private float dashingCooldown = 2;
+    [SerializeField] private float numberOfDashes = 1;
+    [SerializeField] private float dashesAvailable = 1;
+    [SerializeField] public bool isDashing;
+    [SerializeField] private bool dashTrigger;
+    [SerializeField] private bool canDash = true;
+    public TrailRenderer dashTrail;
+
 
     //Respawn
-    public float deadzone = -10;
+    [SerializeField] private float deadzone = -10;
     public GameObject respawnZone;
 
     public Rigidbody2D playerRigidBody;
@@ -34,13 +40,15 @@ public class PlayerScript : MonoBehaviour
     public GameObject jumpControl;
     public Animator playerAnimator;
 
+    private void Start()
+    {
+        playerDamage = GameObject.FindGameObjectWithTag("RotationPoint").GetComponent<PlayerDamageScript>();
+        dashTrail.emitting = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        //Camera
-        Camera playerCamera = Camera.main;
-        playerCamera.transform.position = new Vector3(playerRigidBody.position.x, playerRigidBody.position.y, -10); //Pozice kamery
-
+        //Debug.Log(horizontal);
         //Movement
         if (playerAnimator != null)
         {
@@ -49,13 +57,16 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            horizontal = Input.GetAxis("Horizontal");   //Chození doprava a doleva
-            playerRigidBody.velocity = new Vector2(horizontal * movementSpeed, playerRigidBody.velocity.y);
+            playerAnimator.SetFloat("playerMovementSpeed", Mathf.Abs(horizontal));  //bere hodnotu z horizontal, aby se mohl použít playerMovementSpeed v animatoru
+            playerAnimator.SetBool("isJumping", isJumping);
+            playerAnimator.SetBool("PlayerOnGround", Grounded());
+
             flipCharacter();
 
-            if (horizontal > 0 || horizontal < 0)
+            if (canMove)
             {
-                playerAnimator.SetFloat("playerMovementSpeed", Mathf.Abs(horizontal));  //bere hodnotu z horizontal, aby se mohl použít playerMovementSpeed v animatoru
+                horizontal = Input.GetAxis("Horizontal");   //Chození doprava a doleva
+                playerRigidBody.velocity = new Vector2(horizontal * movementSpeed, playerRigidBody.velocity.y);
             }
 
             if (Input.GetButtonDown("Jump") & Grounded())   //Kontrola jestli je na zemi, tak mùže skoèit
@@ -63,45 +74,44 @@ public class PlayerScript : MonoBehaviour
                 playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, jumpPower);
             }
 
-            if (playerRigidBody.velocity.y > 3)     // když hráè udìlá skok (nahoru), tak se zahraje animace
+            if (playerRigidBody.velocity.y > 0 && playerRigidBody.velocity.y <= 7.5 && !Grounded())     // když hráè udìlá skok (nahoru), tak se zahraje animace
             {
                 isJumping = true;
             }
 
-            else if (playerRigidBody.velocity.y < -3)
-            { //pièo co já vím
+            else if (playerRigidBody.velocity.y < 0 || playerRigidBody.velocity.y > 7.5 && Grounded())
+            {
                 isJumping = false;
             }
 
-            playerAnimator.SetBool("isJumping", isJumping);
-            playerAnimator.SetBool("PlayerOnGround", Grounded());
+            dashFunction();
         }
-
-        dashFunction();
         //Respawn
-        if (playerRigidBody.position.y < deadzone) {
+        if (playerRigidBody.position.y < deadzone)
+        {
             playerRigidBody.position = respawnZone.transform.position;
         }
     }
 
     private void FixedUpdate()
     {
-        if (isDashing) {
+        if (isDashing)
+        {
             return;
         }
     }
 
-    public bool Grounded() {    //vrací hodnotu, když se kruh o polomìru 0.2f dotkne groundLayer
+    public bool Grounded()
+    {    //vrací hodnotu, když se kruh o polomìru 0.2f dotkne groundLayer
         return Physics2D.OverlapCircle(jumpControl.transform.position, 0.2f, groundLayer);
     }
 
-    public void flipCharacter(){    //Funkce pro otoèení charaktera pokud chodí doprava nebo doleva
-        if (isFacingRight && horizontal > 0f || !isFacingRight && horizontal < 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localscale = transform.localScale;
-            localscale.x *= -1f;
-            transform.localScale = localscale;
+    public void flipCharacter()
+    {   //Funkce pro otoèení charaktera pokud chodí doprava nebo doleva
+        if (!isFacingLeft && horizontal < 0f || isFacingLeft && horizontal > 0f) {
+            isFacingLeft = !isFacingLeft;
+            transform.Rotate(0f, 180f, 0f);
+            facingValue = -facingValue;
         }
     }
 
@@ -122,13 +132,25 @@ public class PlayerScript : MonoBehaviour
         IEnumerator Dash()
         {
             isDashing = true;
+            dashTrail.emitting = true;
             canDash = false;
             dashesAvailable = dashesAvailable + (dashesAvailable - (dashesAvailable + 1));
-            float originalGravity = playerRigidBody.gravityScale;
-            playerRigidBody.gravityScale = 0;
-            playerRigidBody.velocity = new Vector2(dashPower * transform.localScale.x, 0);
+            /*float originalGravity = playerRigidBody.gravityScale;
+            playerRigidBody.gravityScale = 0;*/
+            playerRigidBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //Zmrazí pozici Y a rotaci Z
+            playerRigidBody.velocity = new Vector2(dashPower * facingValue, 0);
+            playerAnimator.Play("Dash", 0, 0f);
             yield return new WaitForSeconds(dashingTime);
-            playerRigidBody.gravityScale = originalGravity;
+            playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionY; //Rozmrazí pozici Y
+            /*if (originalGravity == 0)
+            {
+                playerRigidBody.gravityScale = originalGravity;
+            }
+            else if (originalGravity > 0) {
+                originalGravity = 1;
+                playerRigidBody.gravityScale = originalGravity;
+            }*/
+            dashTrail.emitting = false;
             isDashing = false;
             if (dashesAvailable > 0)
             {
@@ -144,12 +166,12 @@ public class PlayerScript : MonoBehaviour
         {
             float currentdashesAvailable = dashesAvailable;
             {
-                for (double timer = dashingCooldown + 2; timer >= 0; timer -= Time.deltaTime)     //Každý 2 vteøiny se obnoví dash
+                for (double timer = dashingCooldown + 1; timer >= 0; timer -= Time.deltaTime)     //Každý 2 vteøiny se obnoví dash
                 {
                     Debug.Log(timer);
                     if (dashesAvailable != currentdashesAvailable)  //Pokud dashne v prùbìhu èasu, co se mu obnovuje dash, tak se zaène èas poèítat od znova
                     {
-                        timer = 3;
+                        timer = 2;
                         dashTrigger = false;
                         yield break;
                     }

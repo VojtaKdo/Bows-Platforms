@@ -5,7 +5,7 @@ Platform hra v developmentu
 <p>- přidána možnost natáhnout luk do konce a vystřelit</p>
 <p>- přidána možnost střílet ve vzduchu dvakrát</p>
 <p>- přidána možnost střílet instantně, když natáhne luk a nedotáhnete ho do konce</p>
-<p>- přidány možnosti pro zrušení střílení když dashujete nebo skáčete</p>
+<p>- přidány možnosti pro zrušení střílení když dashuje nebo skáče</p>
 <p>- animace na střílení se dělají instantně</p>
 
 <h3>Normal Attack</h3>

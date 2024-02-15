@@ -1,7 +1,7 @@
 # Platformer
 Platform hra v developmentu
 
-<h1>Update 0.1.0 | 9. 12. 2023</h1>
+<h1>Update 0.1.0 | 15. 02. 2024</h1>
 <p>- přidána možnost natáhnout luk do konce a vystřelit</p>
 <p>- přidána možnost střílet ve vzduchu dvakrát</p>
 <p>- přidána možnost střílet instantně, když natáhne luk a nedotáhnete ho do konce</p>

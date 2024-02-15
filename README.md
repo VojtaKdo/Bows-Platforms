@@ -7,8 +7,16 @@ Platform hra v developmentu
 <p>- přidána možnost střílet instantně, když natáhne luk a nedotáhnete ho do konce</p>
 <p>- přidány možnosti pro zrušení střílení když dashujete nebo skáčete</p>
 <p>- animace na střílení se dělají instantně</p>
+
+<h3>Normal Attack</h3>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/23894480-e8cc-4af0-b0e9-77da7c3bac80" alt="Prototyp" width="500px"/>
+<br>
+
+<h3>Instant Attack</h3>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/f4d73dc6-4322-47e1-bda5-7021661b7f41" alt="Prototyp" width="500px"/>
+<br>
+
+<h3>Airborne Attack</h3>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/123d1ac6-cbfa-44c7-b1ba-514363536c14" alt="Prototyp" width="500px"/>
 
 <h1>Update 0.0.5 | 9. 12. 2023</h1>

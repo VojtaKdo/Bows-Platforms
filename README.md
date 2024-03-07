@@ -1,6 +1,18 @@
 # Platformer
 Platform hra v developmentu
 
+<h1>Update 0.1.1 | 7. 03. 2024</h1>
+<p>- přidán 1 typ nepřítele: Skeleton Warrior</p>
+<p>- přidána možnost zabít nepřítele
+<p>- přidáno, když tě uvidí nepřítel v blízku, tak začne běhat po tobě(potřeba udělat lepší systém)</p>
+<p>- přidány animace chození a útočení pro Skeleton Warriora</p>
+
+<h3>Early build - jenom chození</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/83786a24-99e2-4286-8b03-0a1fa64f8d23" alt="Prototyp" width="500px"/>
+
+<h3>Tenhle update - přidáno agro, útočení a animace</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/ac737b5f-f903-4954-b241-d07255c343f6" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.1.0 | 15. 02. 2024</h1>
 <p>- přidána možnost natáhnout luk do konce a vystřelit</p>
 <p>- přidána možnost střílet ve vzduchu dvakrát</p>

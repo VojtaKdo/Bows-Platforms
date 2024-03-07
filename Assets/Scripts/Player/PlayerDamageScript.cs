@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerDamageScript : MonoBehaviour
 {
     PlayerMovementScript playerMovement;
+    PlayerStatsScript playerStats;
     public GameObject firePoint;
     public GameObject Arrow;
+    private GameObject spawnedArrow;
     public bool canShoot = false;
     public bool isShooting = false;
     public bool isChargingShot = false;
@@ -26,6 +29,7 @@ public class PlayerDamageScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsScript>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementScript>();
         normalAttackHash = Animator.StringToHash("PlayerAnimationLayer.Normal_Attack_Loop"); //Pøevede to animaci Normal_Attack_Loop do unikátního hashe 
         chargingShotHash = Animator.StringToHash("PlayerAnimationLayer.Normal_Attack_Beginning");
@@ -36,7 +40,7 @@ public class PlayerDamageScript : MonoBehaviour
     {
         AnimatorStateInfo animationStateInfo = playerMovement.playerAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
         //Debug.Log("shootStateInfo: " + animationStateInfo.fullPathHash);
-        Debug.Log("normalAttackHash: " + animationStateInfo.fullPathHash);
+        //Debug.Log("normalAttackHash: " + animationStateInfo.fullPathHash);
         if (playerMovement.playerAnimator != null)
         {
 
@@ -128,6 +132,53 @@ public class PlayerDamageScript : MonoBehaviour
             }*/
         }
 
+        void SpawnGravityArrow()   //Vytvoøí to šíp na pozici firePoint
+        {
+            playerStats.playerDamage = playerStats.playerInstantDamage;
+            playerMovement.playerRigidBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            spawnedArrow = Instantiate(Arrow, firePoint.transform.position, firePoint.transform.rotation);
+
+            ArrowScript arrowScriptComponent = spawnedArrow.GetComponent<ArrowScript>();
+
+            IEnumerator changeArrowGravity()
+            {
+                Debug.Log("Changing gravity!");
+                Rigidbody2D arrowRigidBody = arrowScriptComponent.arrowRigidBody;
+                arrowRigidBody.gravityScale = 3f;
+
+                if (arrowRigidBody != null)
+                {
+                    arrowRigidBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                    yield return new WaitForSeconds(0.1f);
+
+                    if (arrowRigidBody != null) // Kontrola, zda byl Rigidbody2D znièen v prùbìhu èekání
+                    {
+                        arrowRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+                        Debug.Log("Gravity changed!");
+                    }
+                }
+            }
+
+                if (arrowScriptComponent != null)
+            {
+                StartCoroutine(changeArrowGravity());
+            }
+            else
+            {
+                Debug.LogError("ArrowScript component not found on the spawned arrow.");
+            }
+        }
+        void ArrowDestroyedHandler()
+        {
+            // Odebrání skriptu ArrowScript ze šípu
+            ArrowScript arrowScriptComponent = spawnedArrow.GetComponent<ArrowScript>();
+            if (arrowScriptComponent != null)
+            {
+                arrowScriptComponent.OnDestroyed -= ArrowDestroyedHandler; // Odstranìní handleru události
+                arrowScriptComponent.RemoveArrowScript(); // Odebrání skriptu
+            }
+        }
+
         void SpawnArrow()   //Vytvoøí to šíp na pozici firePoint
         {
             Instantiate(Arrow, firePoint.transform.position, firePoint.transform.rotation);
@@ -143,15 +194,17 @@ public class PlayerDamageScript : MonoBehaviour
         }
 
         void shootChargedShot() {   //Vystøelí, zastaví støílení a odmrzne mu pozice X
+            playerStats.playerDamage = playerStats.playerChargeDamage;
             stopShooting();
             SpawnArrow();
             playerMovement.playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
 
         void shootAirborne() {  //Zahraje se animace, vystøelí, zmenší se mu o jedno airShotsAvailable a startne funkci shootAirborneCooldown()
+            playerStats.playerDamage = playerStats.playerInstantDamage;
             playerMovement.playerAnimator.Play("Airborne_Attack", 0, 0.15f);
             isShooting = true;
-            SpawnArrow();
+            SpawnGravityArrow();
             StartCoroutine(shootAirborneCooldown());
             Debug.Log("AirShot");
             airShotsAvailable--;
@@ -161,16 +214,17 @@ public class PlayerDamageScript : MonoBehaviour
                 playerMovement.playerRigidBody.gravityScale = 0.2f;
                 playerMovement.playerRigidBody.velocity = Vector2.zero;
                 playerMovement.canMove = false;
+                playerMovement.playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
                 yield return new WaitForSeconds(0.25f);
                 playerMovement.playerRigidBody.gravityScale = 1f;
                 isShooting = false;
                 playerMovement.canMove = true;
-                Debug.Log("Cooldown passed!");
+                Debug.Log("Cooldown passed!"); 
         }
 
         IEnumerator shootUnchargedShot() {  //Zahraje animaci, vystøelí, nemùže se pohybovat a poèka chvilku než se bude moct pohybovat o odmrzne mu pozice X
             playerMovement.playerAnimator.Play("Instant_Attack", 0, 0.1f);
-            SpawnArrow();
+            SpawnGravityArrow();
             playerMovement.canMove = false;
             yield return new WaitForSeconds(0.2f);
             stopShooting();

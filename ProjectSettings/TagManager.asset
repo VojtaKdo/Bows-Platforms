@@ -6,16 +6,23 @@ TagManager:
   tags:
   - OutOfBounds
   - RotationPoint
+  - Arrow
+  - Border
+  - Enemy
+  - collisionDetection
+  - groundDetection
+  - knightSkeleton
+  - attackTrigger
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Enemy
+  - Objects
   - 
   - 
   - 

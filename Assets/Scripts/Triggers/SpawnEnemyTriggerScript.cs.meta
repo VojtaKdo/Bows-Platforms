@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 92d6f33d54fd4364fa36a83af43514c2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spawnEnemy: {instanceID: 0}
+  - knightSkeletonPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

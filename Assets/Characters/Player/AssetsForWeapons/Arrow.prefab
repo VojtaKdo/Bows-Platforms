@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3223845803984550147}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1dfa1585cd49a43b1ba6ab8e6a7ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  knightSkeleton: {fileID: 7197060372984340255, guid: 9ee40289e4b600e47aa672e95f15c764, type: 3}
+  playerDamage: 1
   arrowRigidBody: {fileID: 3606132619072752967}
   arrowSpeed: 20
 --- !u!61 &3223845803984550147

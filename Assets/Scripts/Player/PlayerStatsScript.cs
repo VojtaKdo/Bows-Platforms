@@ -17,7 +17,6 @@ public class PlayerStatsScript : MonoBehaviour
     public float playerNumberOfDashes = 1;
     public float playerDashesAvailable = 1;
     public bool isPlayerInvincible;
-    public bool isPlayerTakingDamage;
 
     public IEnumerator PlayerInvicibility() {
         Debug.Log("Player is invincible"); 

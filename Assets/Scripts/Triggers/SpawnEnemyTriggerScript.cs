@@ -43,7 +43,6 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
             {
                 enemyStats.enemyHP = knightSkelStats.knightSkeletonHP;
                 enemyStats.enemyMaxHP = knightSkelStats.knightSkeletonMaxHP;
-                enemyStats.enemyMovementSpeed = knightSkelStats.knightSkeletonMovementSpeed;
                 enemyStats.enemyDamage = knightSkelStats.knightSkeletonDamage;
             }
             return newKnightSkeleton;

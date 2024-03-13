@@ -9,5 +9,6 @@ public class EnemyStatsScript : MonoBehaviour
     public float enemyMovementSpeed;
     public float enemyDamage;
     public float enemyAttackSpeed;
+    public bool isEnemyAttacking;
     public LayerMask groundLayer;
 }

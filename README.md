@@ -1,6 +1,11 @@
 # Platformer
 Platform hra v developmentu
 
+<h1>Update 0.1.2 | 13. 03. 2024</h1>
+<p>- upraveno agro</p>
+<p>- když je hráč poblíž nepřítelových zad, tak se otočí na hráče a spustí se mu agro</p>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/a5ef8271-9c11-4a35-aa0c-61e7eb6cd8bc" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.1.1 | 7. 03. 2024</h1>
 <p>- přidán 1 typ nepřítele: Skeleton Warrior</p>
 <p>- přidána možnost zabít nepřítele

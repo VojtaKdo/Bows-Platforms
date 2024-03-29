@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
     PlayerStatsScript playerStats;
+    AudioManagerScript audioManager;
     public GameObject knightSkeleton;
     public float playerDamage = 1;
     public event Action OnDestroyed;
@@ -19,6 +19,7 @@ public class ArrowScript : MonoBehaviour
     void Start()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsScript>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
 
         if (playerStats != null)
         {
@@ -41,11 +42,11 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.gameObject.CompareTag("Player") || hitInfo.isTrigger)
+        if (hitInfo.gameObject.CompareTag("Player") || hitInfo.isTrigger || hitInfo.gameObject.CompareTag("Border"))
         {
             isDestroyed = false;
         }
-        else {
+        else{
             OnDestroy();
             Destroy(gameObject);
             isDestroyed = true;
@@ -55,10 +56,12 @@ public class ArrowScript : MonoBehaviour
             Debug.Log("Enemy Hit!");
 
             var knightSkelStats = hitInfo.gameObject.GetComponent<knightSkeletonStats>();
+            var healthBar = hitInfo.gameObject.GetComponentInChildren<HealthBarScript>();
 
-            if (knightSkelStats)
+            if (knightSkelStats && healthBar)
             {
-               knightSkelStats.knightSkeletonHP -= playerStats.playerDamage; 
+               knightSkelStats.knightSkeletonHP -= playerStats.playerDamage;
+               healthBar.UpdateHealthBarSlider(knightSkelStats.knightSkeletonHP, knightSkelStats.knightSkeletonMaxHP);
             }
         }
         

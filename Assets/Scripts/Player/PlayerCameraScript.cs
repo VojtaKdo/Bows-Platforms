@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCameraScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D playerRigidBody;
     public Camera playerCamera;
+    public float tutorialProgress = 1;
 
     void Start()
     {

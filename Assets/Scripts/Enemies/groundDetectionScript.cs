@@ -20,7 +20,7 @@ public class groundDetectionScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log(collision.name);
-        if (collision.gameObject.layer == 6 && !collision.gameObject.CompareTag("Border") && !collision.isTrigger)
+        if (collision.gameObject.layer == 6 && !collision.gameObject.CompareTag("Border") && !collision.isTrigger && !collision.gameObject.CompareTag("OutOfBounds"))
         {
             enemyMovement.flipCharacter();
         }

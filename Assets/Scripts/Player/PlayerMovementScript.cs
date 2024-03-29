@@ -17,7 +17,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     //Movement - jump
     public double jumpingTime = 0.45;
-    [SerializeField] public bool isJumping;
+    public bool isJumping;
 
     //Movement - dash
     [SerializeField] public bool isDashing;
@@ -71,9 +71,18 @@ public class PlayerMovementScript : MonoBehaviour
 
                 if (Input.GetButtonDown("Jump") & Grounded())   //Kontrola jestli je na zemi, tak mùže skoèit
                 {
+                    playerAnimator.Play("Jumping", 0, 0f);
                     playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerStats.playerJumpPower);
                     playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
                 }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                playerRigidBody.gravityScale = 2f;
+            }
+
+            else if (Input.GetKeyUp(KeyCode.S)) {
+                playerRigidBody.gravityScale = 1f;
+            }
 
             if (playerRigidBody.velocity.y > 0 && playerRigidBody.velocity.y <= 7.5 && !Grounded())     // když hráè udìlá skok (nahoru), tak se zahraje animace
             {

@@ -9,6 +9,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
     public knightSkeletonStats knightSkelStats;
     public EnemyStatsScript enemyStats;
     public enemyMovementScript enemyMovement;
+    public HealthBarScript healthBar;
     public GameObject attackTrigger;
     public Animator knightSkeletonAnimator;
     public int knightSkeletonAttackHash;
@@ -26,6 +27,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
     void Update()
     {
         playerStatsScript = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStatsScript>();
+        healthBar = GameObject.FindGameObjectWithTag("PlayerUI")?.GetComponentInChildren<HealthBarScript>();
         knightSkelStats = GetComponentInParent<knightSkeletonStats>();
         enemyStats = GetComponentInParent<EnemyStatsScript>();
         knightSkeletonAnimator.SetBool("isKnightSkeletonAttacking", enemyStats.isEnemyAttacking);
@@ -33,7 +35,8 @@ public class KnightSkeletonDamageScript : MonoBehaviour
 
         if (animationStateInfo.fullPathHash == knightSkeletonAttackEndHash && !playerStatsScript.isPlayerInvincible && enemyStats.isEnemyAttacking)
         {
-            playerStatsScript.playerHP -= knightSkelStats.knightSkeletonDamage;
+            PlayerStatsScript.playerHP -= knightSkelStats.knightSkeletonDamage;
+            healthBar.UpdateHealthBarImage(PlayerStatsScript.playerHP, PlayerStatsScript.playerMaxHP);
             StartCoroutine(playerStatsScript.PlayerInvicibility());
         }
 
@@ -64,7 +67,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("getDamageHitbox"))
         {
             Debug.Log("Player exit!");
             enemyStats.isEnemyAttacking = false;

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerStatsScript : MonoBehaviour
 {
-    public float playerHP = 10;
-    public float playerMaxHP = 10;
+    HealthBarScript healthBar;
+    public static float playerHP = 10;
+    public static float playerMaxHP = 10;
     public float playerDamage;
     public float playerInstantDamage = 1;
     public float playerChargeDamage = 2;
@@ -18,10 +19,19 @@ public class PlayerStatsScript : MonoBehaviour
     public float playerDashesAvailable = 1;
     public bool isPlayerInvincible;
 
+    void Start()
+    {
+        healthBar = GameObject.FindGameObjectWithTag("PlayerUI").GetComponentInChildren<HealthBarScript>();
+    }
     public IEnumerator PlayerInvicibility() {
         Debug.Log("Player is invincible"); 
         isPlayerInvincible = true;
         yield return new WaitForSeconds(0.5f);
         isPlayerInvincible = false;
+    }
+
+    void Update()
+    {
+        healthBar.UpdateHealthBarImage(PlayerStatsScript.playerHP, PlayerStatsScript.playerMaxHP);
     }
 }

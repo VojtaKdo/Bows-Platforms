@@ -13,6 +13,17 @@ TagManager:
   - groundDetection
   - knightSkeleton
   - attackTrigger
+  - enemyHpBar
+  - Audio
+  - SceneTransitionController
+  - PlayerUI
+  - getDamageHitbox
+  - descendTutorial
+  - left&rightTutorial
+  - jumpTutorial
+  - dashTutorial
+  - Tutorial
+  - Portal
   layers:
   - Default
   - TransparentFX

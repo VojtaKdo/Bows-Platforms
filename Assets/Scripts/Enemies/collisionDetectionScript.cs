@@ -20,7 +20,7 @@ public class collisionDetectionScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.name);
-        if ((!collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Border")) && !collision.isTrigger)
+        if ((!collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Border")) && !collision.isTrigger && !collision.gameObject.CompareTag("OutOfBounds"))
         {
             enemyMovement.flipCharacter();
         }

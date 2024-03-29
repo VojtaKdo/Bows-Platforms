@@ -15,6 +15,7 @@ public class RayPlayerDetectionScript : MonoBehaviour
     public AnimatorStateInfo animationStateInfo;
     public int knightSkeletonWalkingHash;
     public float rayOffset = 2;
+    public bool isPlayerVisible;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +29,15 @@ public class RayPlayerDetectionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isPlayerVisible);
         animationStateInfo = knightSkeletonAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
         RaycastHit2D rayPlayerDetection = Physics2D.Raycast(rayPlayerDetectionGameObject.transform.position, range * new Vector2(enemyMovement.facingValue, 0f), range, detectionLayer);
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(rayPlayerDetectionGameObject.transform.position, rayPlayerDetection.point - (Vector2)rayPlayerDetectionGameObject.transform.position, range, LayerMask.GetMask("Ground"));
+
+
         if (rayPlayerDetection.collider != null && !enemyStats.isEnemyAttacking)
         {
-            //Debug.Log("Player Detected!");
             Debug.DrawRay(rayPlayerDetectionGameObject.transform.position, range * new Vector2(enemyMovement.facingValue, 0f), Color.red);
             if (animationStateInfo.fullPathHash == knightSkeletonWalkingHash && knightSkelStats.agroOnce)
             {
@@ -40,7 +45,10 @@ public class RayPlayerDetectionScript : MonoBehaviour
                 knightSkelStats.agroOnce = false;
             }
         }
-        else {
+
+
+        else
+        {
             //Debug.Log("No Player!");
             knightSkelStats.agroOnce = true;
             Debug.DrawRay(rayPlayerDetectionGameObject.transform.position, range * new Vector2(enemyMovement.facingValue, 0f), Color.green);
@@ -48,7 +56,8 @@ public class RayPlayerDetectionScript : MonoBehaviour
             {
                 enemyStats.enemyMovementSpeed = -3;
             }
-            else if ((!enemyMovement.isFacingLeft && !enemyStats.isEnemyAttacking) || (!enemyMovement.isFacingLeft && animationStateInfo.fullPathHash == knightSkeletonWalkingHash)) {
+            else if ((!enemyMovement.isFacingLeft && !enemyStats.isEnemyAttacking) || (!enemyMovement.isFacingLeft && animationStateInfo.fullPathHash == knightSkeletonWalkingHash))
+            {
                 enemyStats.enemyMovementSpeed = 3;
             }
         }

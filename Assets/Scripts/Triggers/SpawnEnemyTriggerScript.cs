@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnEnemyTriggerScript : MonoBehaviour
 {
+    HealthBarScript healthBar;
     public GameObject spawnEnemy;
     public GameObject knightSkeletonPrefab;
+    public GameObject[] numberOfEnemies;
+    public float spawnRange;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Trigger na spawnování nepøátelù
         if (collision.gameObject.CompareTag("Player"))
-        {
+        { 
             Debug.Log("Enemy Spawned!");
             GameObject newKnightSkeleton = SpawnEnemy(knightSkeletonPrefab);
 
@@ -20,8 +24,8 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
             if (knightSkeletonDMGscript != null) {
                 knightSkeletonDMGscript.AssignAttackTrigger(newKnightSkeleton);
             }
-            //Destroy(this);
-            //Destroy(gameObject);
+            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -31,7 +35,10 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
         if (enemy != null)
         {
             //Spawne se nìpøítel v pøedurèeném rozmezí a uloží se do newKnightSkeleton
-            GameObject newKnightSkeleton = Instantiate(enemy, new Vector3(Random.Range(spawnEnemy.transform.position.x + 5f, spawnEnemy.transform.position.x - 5f), Random.Range(spawnEnemy.transform.position.y, spawnEnemy.transform.position.y), 0), Quaternion.identity);
+            foreach (GameObject enemies in numberOfEnemies)
+            {
+                GameObject newKnightSkeleton = Instantiate(enemies, new Vector3(Random.Range(spawnEnemy.transform.position.x + spawnRange, spawnEnemy.transform.position.x - spawnRange), Random.Range(spawnEnemy.transform.position.y, spawnEnemy.transform.position.y), 0), Quaternion.identity);
+            }
 
             //Získáme scripty pro každého nepøítele vlastní
             knightSkeletonStats knightSkelStats = enemy.GetComponent<knightSkeletonStats>();
@@ -39,13 +46,13 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
 
 
             //Pøídáme každému nepøíteli svoje vlastní vlastnosti
-            if (knightSkelStats != null && enemyStats != null)
+            if (knightSkelStats != null && enemyStats != null && healthBar != null)
             {
                 enemyStats.enemyHP = knightSkelStats.knightSkeletonHP;
                 enemyStats.enemyMaxHP = knightSkelStats.knightSkeletonMaxHP;
                 enemyStats.enemyDamage = knightSkelStats.knightSkeletonDamage;
             }
-            return newKnightSkeleton;
+            return enemy;
         }
 
         else {

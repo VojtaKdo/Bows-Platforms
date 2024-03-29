@@ -2,22 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerDamageScript : MonoBehaviour
 {
     PlayerMovementScript playerMovement;
     PlayerStatsScript playerStats;
+    AudioManagerScript audioManager;
     public GameObject firePoint;
     public GameObject Arrow;
     private GameObject spawnedArrow;
-    public bool canShoot = false;
     public bool isShooting = false;
     public bool isChargingShot = false;
     public bool isFullyCharged = false;
     public bool canShootAirborne = false;
+    public bool playSFXonce = false;
     public float fullyChargedCooldown = 0.5f;
     public float shootingCooldown = 0.6f;
     public float airShots = 2;
@@ -31,12 +30,13 @@ public class PlayerDamageScript : MonoBehaviour
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsScript>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementScript>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
         normalAttackHash = Animator.StringToHash("PlayerAnimationLayer.Normal_Attack_Loop"); //Pøevede to animaci Normal_Attack_Loop do unikátního hashe 
         chargingShotHash = Animator.StringToHash("PlayerAnimationLayer.Normal_Attack_Beginning");
         airborneAttackHash = Animator.StringToHash("PlayerAnimationLayer.Airborne_Attack");
     }
     // Update is called once per frame
-    void Update()
+    void Update() 
     {
         AnimatorStateInfo animationStateInfo = playerMovement.playerAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
         //Debug.Log("shootStateInfo: " + animationStateInfo.fullPathHash);
@@ -50,7 +50,6 @@ public class PlayerDamageScript : MonoBehaviour
 
             //Debug.Log("normalAttackBlendController: " + normalAttackBlendController);
             playerMovement.playerAnimator.SetBool("isChargingShot", isChargingShot);
-            playerMovement.playerAnimator.SetBool("canShoot", canShoot);
             playerMovement.playerAnimator.SetBool("isShooting", isShooting);
             playerMovement.playerAnimator.SetBool("canShootAirborne", canShootAirborne);
 
@@ -63,6 +62,7 @@ public class PlayerDamageScript : MonoBehaviour
                     playerMovement.canMove = false;
                     playerMovement.playerRigidBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;    //Zmrazí pozici X i rotaci Z
                     playerMovement.playerAnimator.Play("Normal_Attack_Beginning", 0, 0f);   //Zahraje se animace Normal_Attack_Beginning
+                    audioManager.PlaySFX(audioManager.bowString);
                 }
 
                 else if (!playerMovement.Grounded() && airShotsAvailable > 0 && canShootAirborne == true)   //Když zaène strílet a není na zemi, tak se mu povolí speciální støílení ve vzduchu
@@ -82,8 +82,14 @@ public class PlayerDamageScript : MonoBehaviour
             }
 
             if (playerMovement.isDashing && isShooting == true) {
+                audioManager.StopSFX();
                 stopShooting();
             }
+
+            if (playerMovement.isJumping) {
+                playerMovement.playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            }
+
             /*if (shootStateInfo.fullPathHash == -772934200) {   //Zjistí, jestli se se hash Animace shoduje se stavem té animace -286001277 -1842485324 -772934200
                 canShoot = true;
             }
@@ -103,19 +109,24 @@ public class PlayerDamageScript : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                if (animationStateInfo.fullPathHash == chargingShotHash && canShoot == false && isShooting == true && canShootAirborne == false && airShotsAvailable == 2) {    //Pokud stav animace, která zrovna hraje se bude rovna hashi animace, tak mùže vystøelit Uncharged støelu
+                if (animationStateInfo.fullPathHash == chargingShotHash && isShooting == true && canShootAirborne == false && airShotsAvailable == 2) {    //Pokud stav animace, která zrovna hraje se bude rovna hashi animace, tak mùže vystøelit Uncharged støelu
                     StartCoroutine(shootUnchargedShot());
                 }
 
-                else if (animationStateInfo.fullPathHash == normalAttackHash && canShoot == true)   //Pokud stav animace, která zrovna hraje se bude rovna hashi animace, tak mùže vystøelit Charged støelu
+                else if (animationStateInfo.fullPathHash == normalAttackHash)   //Pokud stav animace, která zrovna hraje se bude rovna hashi animace, tak mùže vystøelit Charged støelu
                 {
                     shootChargedShot();
                 }
             }
 
-            if (animationStateInfo.fullPathHash == normalAttackHash && isChargingShot == true)
-            {   //Zjistí, jestli se se hash Animace shoduje se stavem té animace
-                canShoot = true;
+            if (!playSFXonce && animationStateInfo.fullPathHash == normalAttackHash)
+            {
+                audioManager.PlaySFX(audioManager.chargeShot);
+                playSFXonce = true;
+            }
+
+            else if(animationStateInfo.fullPathHash != normalAttackHash) {
+                playSFXonce = false;
             }
 
             /*if (aimingDirection.x < 0 )
@@ -137,6 +148,8 @@ public class PlayerDamageScript : MonoBehaviour
             playerStats.playerDamage = playerStats.playerInstantDamage;
             playerMovement.playerRigidBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             spawnedArrow = Instantiate(Arrow, firePoint.transform.position, firePoint.transform.rotation);
+            audioManager.StopSFX();
+            audioManager.PlaySFX(audioManager.bowShoot); 
 
             ArrowScript arrowScriptComponent = spawnedArrow.GetComponent<ArrowScript>();
 
@@ -182,13 +195,13 @@ public class PlayerDamageScript : MonoBehaviour
         void SpawnArrow()   //Vytvoøí to šíp na pozici firePoint
         {
             Instantiate(Arrow, firePoint.transform.position, firePoint.transform.rotation);
+            audioManager.PlaySFX(audioManager.bowShoot);
         }
 
 
         void stopShooting() //Zastaví støílení a mùže se znova pohybovat
         {
             isChargingShot = false;
-            canShoot = false;
             isShooting = false;
             playerMovement.canMove = true;
         }
@@ -211,7 +224,7 @@ public class PlayerDamageScript : MonoBehaviour
         }
         
         IEnumerator shootAirborneCooldown() {   //Zmenší se mu gravitace, stopne se na chvilku, nemùže se pohybovat a poèká chvilku než se mu zmìní gravitace do normálu a bude moct støílet
-                playerMovement.playerRigidBody.gravityScale = 0.2f;
+                playerMovement.playerRigidBody.gravityScale = 0.4f;
                 playerMovement.playerRigidBody.velocity = Vector2.zero;
                 playerMovement.canMove = false;
                 playerMovement.playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;

@@ -1,6 +1,14 @@
 # Platformer
 Platform hra v developmentu
 
+<h1>Update 0.2.0 | 29. 03. 2024</h1>
+<p>- dodělán tutorial level</p>
+<p>- přidán viditelný HP bar</p>
+<p>- přidán profilový obrázek</p>
+<p>- přidán portál na konci levelů</p>
+<p>- přidána přechod mezi levely</p>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/5ede9dcb-0e30-4790-bddc-fecc8062a6f2" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.1.2 | 13. 03. 2024</h1>
 <p>- upraveno agro</p>
 <p>- když je hráč poblíž nepřítelových zad, tak se otočí na hráče a spustí se mu agro</p>

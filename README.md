@@ -1,8 +1,24 @@
 # Platformer
 Platform hra v developmentu
 
+<h1>Update 0.3.0 | 14. 04. 2024</h1>
+<p>- přidán <b>Level 2</b> (Level 1 dodělávám)</p>
+<p>- vylepšena detekce země pro nepřátele</p>
+<p>- přidány spikes, který dělají poškození hráčovi, pokud na nich stojí</p>
+<p>- WE ARE STILL HERE</p>
+
+<h3>Level 2</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/95b13876-de49-4d74-969e-7c8f03677ca8" alt="Prototyp" width="500px"/>
+
+<h4>Detekce nepřítele předtím</h4>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/f9b3fc2f-7aeb-47e3-8afe-deea56a39616" alt="Prototyp" width="500px"/>
+
+<h4>Detekce nepřítele potom</h4>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/f99f921e-6333-4b9f-a1a7-eee4396c8e1e" alt="Prototyp" width="500px"/>
+
+
 <h1>Update 0.2.0 | 29. 03. 2024</h1>
-<p>- dodělán tutorial level</p>
+<p>- dodělán <b>tutorial level</b></p>
 <p>- přidán viditelný HP bar</p>
 <p>- přidán profilový obrázek</p>
 <p>- přidán portál na konci levelů</p>

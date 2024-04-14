@@ -41,7 +41,7 @@ public class PlayerDamageScript : MonoBehaviour
         AnimatorStateInfo animationStateInfo = playerMovement.playerAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
         //Debug.Log("shootStateInfo: " + animationStateInfo.fullPathHash);
         //Debug.Log("normalAttackHash: " + animationStateInfo.fullPathHash);
-        if (playerMovement.playerAnimator != null)
+        if (playerMovement.playerAnimator != null && !PlayerUIScript.GameIsPaused) 
         {
 
             /*mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);  //Zjistí, kde v té main camera se nachází pozice myši

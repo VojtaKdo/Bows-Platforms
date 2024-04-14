@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     //Scripts
     PlayerStatsScript playerStats;
+    public DashChargeBarScript dashChargeBar;
 
     //Movement - left and right
     [SerializeField] private float facingValue = 1;
@@ -18,6 +20,10 @@ public class PlayerMovementScript : MonoBehaviour
     //Movement - jump
     public double jumpingTime = 0.45;
     public bool isJumping;
+
+    //Platformy
+    public CapsuleCollider2D playerCollider;
+    public GameObject currentOneWayPlatform;
 
     //Movement - dash
     [SerializeField] public bool isDashing;
@@ -38,6 +44,8 @@ public class PlayerMovementScript : MonoBehaviour
     private void Start()
     {
         playerStats = GetComponent<PlayerStatsScript>();
+        dashChargeBar = GameObject.FindGameObjectWithTag("PlayerUI").GetComponentInChildren<DashChargeBarScript>();
+        playerCollider = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<CapsuleCollider2D>();
 
         if(playerStats != null)
         {
@@ -49,10 +57,11 @@ public class PlayerMovementScript : MonoBehaviour
     {
         //Debug.Log(horizontal);
         //Movement
-        if (playerAnimator != null)
+        if (playerAnimator != null && !PlayerUIScript.GameIsPaused)
         {
             if (isDashing)
             {
+                dashChargeBar.UpdateChargeBarImage(2, 2);
                 return;
             }
 
@@ -75,12 +84,15 @@ public class PlayerMovementScript : MonoBehaviour
                     playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, playerStats.playerJumpPower);
                     playerRigidBody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
                 }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 playerRigidBody.gravityScale = 2f;
+                if (currentOneWayPlatform != null) {
+                    StartCoroutine(DisableCollision());
+                }
             }
 
-            else if (Input.GetKeyUp(KeyCode.S)) {
+            else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
                 playerRigidBody.gravityScale = 1f;
             }
 
@@ -129,7 +141,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash == true && playerStats.playerDashesAvailable != 0)
             {
-                StartCoroutine(Dash());
+            StartCoroutine(Dash());
             }
 
             if (Grounded() && playerStats.playerDashesAvailable >= 0 && playerStats.playerDashesAvailable != playerStats.playerNumberOfDashes && isDashing == false && dashTrigger == false)   //Zkontroluje jestli je na zemi (Grounded()), zda má poèet dostupných dashù (dashesAvailable) menší než poèet dashù (numberOfDashes), jestli zrovna dashuje (isDashing) a dashTrigger se dá false,
@@ -179,9 +191,10 @@ public class PlayerMovementScript : MonoBehaviour
                     for (double timer = playerStats.playerDashingCooldown + 1; timer >= 0; timer -= Time.deltaTime)     //Každý 2 vteøiny se obnoví dash
                     {
                         Debug.Log(timer);
+                        dashChargeBar.UpdateChargeBarImage(timer-1, 2);
                         if (playerStats.playerDashesAvailable != currentdashesAvailable)  //Pokud dashne v prùbìhu èasu, co se mu obnovuje dash, tak se zaène èas poèítat od znova
                         {
-                            timer = 2;
+                        timer = 2;
                             dashTrigger = false;
                             yield break;
                         }
@@ -201,4 +214,27 @@ public class PlayerMovementScript : MonoBehaviour
                 playerAnimator.SetBool("isDashing", isDashing);
             }
         }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform")) {
+            currentOneWayPlatform = collision.gameObject;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            currentOneWayPlatform = null;
+        }
+    }
+
+    private IEnumerator DisableCollision() { 
+        TilemapCollider2D platformCollider = currentOneWayPlatform.GetComponent<TilemapCollider2D>();
+
+        Physics2D.IgnoreCollision(playerCollider, platformCollider);
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+    }
 }

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatsScript : MonoBehaviour
 {
     HealthBarScript healthBar;
     public static float playerHP = 10;
+    public float previousHealth;
     public static float playerMaxHP = 10;
     public float playerDamage;
     public float playerInstantDamage = 1;
@@ -22,16 +24,37 @@ public class PlayerStatsScript : MonoBehaviour
     void Start()
     {
         healthBar = GameObject.FindGameObjectWithTag("PlayerUI").GetComponentInChildren<HealthBarScript>();
+        previousHealth = playerHP;
     }
+
+    //Každých 0,5 vteøin se mu dá nesmrtelnost
     public IEnumerator PlayerInvicibility() {
         Debug.Log("Player is invincible"); 
         isPlayerInvincible = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); 
         isPlayerInvincible = false;
+        Debug.Log("Player is not invincible");
     }
 
     void Update()
     {
-        healthBar.UpdateHealthBarImage(PlayerStatsScript.playerHP, PlayerStatsScript.playerMaxHP);
+        //Koukne, jestli se høáèovi mìní životy
+        float currentHealth = playerHP;
+
+        //Když hráè umøe, tak se respawne v tom stejným levelu
+        if (playerHP <= 0) {    //trolled
+            Debug.Log("Player left");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            playerHP = playerMaxHP;
+        }
+
+        //Pokud se zmìní hráèovi životy, tak se mu dá nesmrtelnost a aktualizuje se mu hpBar
+        if (currentHealth != previousHealth) {
+            Debug.Log("Player is taking damage!");
+            healthBar.UpdateHealthBarImage(playerHP, playerMaxHP);
+            StartCoroutine(PlayerInvicibility());
+        } 
+
+        previousHealth = currentHealth;
     }
 }

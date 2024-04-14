@@ -24,6 +24,9 @@ TagManager:
   - dashTutorial
   - Tutorial
   - Portal
+  - OneWayPlatform
+  - SpawnEnemyTrigger
+  - EscapeMenu
   layers:
   - Default
   - TransparentFX

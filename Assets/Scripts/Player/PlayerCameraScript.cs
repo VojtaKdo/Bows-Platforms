@@ -8,7 +8,9 @@ public class PlayerCameraScript : MonoBehaviour
     // Start is called before the first frame update
     public Rigidbody2D playerRigidBody;
     public Camera playerCamera;
-    public float tutorialProgress = 1;
+    public static float smoothTime = 0.1f;
+    public static float yOffSet = 0;
+    public Vector3 velocity = Vector3.zero;
 
     void Start()
     {
@@ -19,6 +21,12 @@ public class PlayerCameraScript : MonoBehaviour
     void Update()
     {
         //Camera
-        playerCamera.transform.position = new Vector3(playerRigidBody.position.x, playerRigidBody.position.y, -10); //Pozice kamery
+        if (playerRigidBody.transform.position.y >= 0)
+        {
+            playerCamera.transform.position = Vector3.SmoothDamp(playerCamera.transform.position, new Vector3(playerRigidBody.position.x, playerRigidBody.position.y, -10), ref velocity, smoothTime);
+        }
+        else {
+            playerCamera.transform.position = Vector3.SmoothDamp(playerCamera.transform.position, new Vector3(playerRigidBody.position.x, 0, -10), ref velocity, smoothTime);
+        }
     }
 }

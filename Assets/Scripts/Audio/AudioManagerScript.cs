@@ -13,6 +13,7 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip bowString;
     public AudioClip bowShoot;
     public AudioClip chargeShot;
+    public AudioClip saskaScream;
 
     // Start is called before the first frame update
     void Start()

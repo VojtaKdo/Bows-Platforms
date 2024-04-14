@@ -21,6 +21,7 @@ public class SceneStartTransitionControllerScript : MonoBehaviour
     {
         // Fade in
         playerMovement.canMove = false;
+        transitionImage.enabled = true;
         yield return FadeImage(transitionImage, 0f, 0f);
         yield return FadeImage(transitionImage, 1f, fadeDuration / 2);
 

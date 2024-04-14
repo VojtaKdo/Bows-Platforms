@@ -15,13 +15,14 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
     {
         //Trigger na spawnování nepøátelù
         if (collision.gameObject.CompareTag("Player"))
-        { 
+        {
             Debug.Log("Enemy Spawned!");
             GameObject newKnightSkeleton = SpawnEnemy(knightSkeletonPrefab);
 
             KnightSkeletonDamageScript knightSkeletonDMGscript = newKnightSkeleton.GetComponent<KnightSkeletonDamageScript>();
 
-            if (knightSkeletonDMGscript != null) {
+            if (knightSkeletonDMGscript != null)
+            {
                 knightSkeletonDMGscript.AssignAttackTrigger(newKnightSkeleton);
             }
             Destroy(this);
@@ -30,7 +31,8 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
     }
 
     //Spawnování nepøítele (pro teï Warrior skeletona)
-    private GameObject SpawnEnemy(GameObject enemy) {
+    private GameObject SpawnEnemy(GameObject enemy)
+    {
         //Pokud enemy neexistuje, tak se to vykoná
         if (enemy != null)
         {
@@ -55,7 +57,8 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
             return enemy;
         }
 
-        else {
+        else
+        {
             return null;
         }
     }

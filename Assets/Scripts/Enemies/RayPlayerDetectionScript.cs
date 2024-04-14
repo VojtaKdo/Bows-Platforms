@@ -9,6 +9,7 @@ public class RayPlayerDetectionScript : MonoBehaviour
     public knightSkeletonStats knightSkelStats;
     public BoxCollider2D behindSkeletonPlayerDetectionBoxCollider;
     public GameObject rayPlayerDetectionGameObject;
+    public GameObject groundDetection;
     public LayerMask detectionLayer;
     public float range = 8;
     public Animator knightSkeletonAnimator;
@@ -29,16 +30,17 @@ public class RayPlayerDetectionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isPlayerVisible);
         animationStateInfo = knightSkeletonAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
+
+        //Nepøítel zaène vyzaøovat Raycast, který se pøizpùsobuje rychlosti pohybu nepøítele
         RaycastHit2D rayPlayerDetection = Physics2D.Raycast(rayPlayerDetectionGameObject.transform.position, range * new Vector2(enemyMovement.facingValue, 0f), range, detectionLayer);
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(rayPlayerDetectionGameObject.transform.position, rayPlayerDetection.point - (Vector2)rayPlayerDetectionGameObject.transform.position, range, LayerMask.GetMask("Ground"));
-
-
+        //Pokud je nìco v collideru a nepøítel neútoèí, tak se vykreslí èervený paprsek (Ray)
         if (rayPlayerDetection.collider != null && !enemyStats.isEnemyAttacking)
         {
             Debug.DrawRay(rayPlayerDetectionGameObject.transform.position, range * new Vector2(enemyMovement.facingValue, 0f), Color.red);
+
+            //Pokud nepøítel chodí a aktivovalo se mu agro, tak se mu zdvojnásobí rychlost pohybu
             if (animationStateInfo.fullPathHash == knightSkeletonWalkingHash && knightSkelStats.agroOnce)
             {
                 enemyStats.enemyMovementSpeed = enemyStats.enemyMovementSpeed * 2;
@@ -50,6 +52,8 @@ public class RayPlayerDetectionScript : MonoBehaviour
         else
         {
             //Debug.Log("No Player!");
+
+            //Pokud nikdo není v collideru, tak se mu deaktivuje agro a vykreslí se zelen paprsek (Ray)
             knightSkelStats.agroOnce = true;
             Debug.DrawRay(rayPlayerDetectionGameObject.transform.position, range * new Vector2(enemyMovement.facingValue, 0f), Color.green);
             if ((enemyMovement.isFacingLeft && animationStateInfo.fullPathHash == knightSkeletonWalkingHash) || (enemyMovement.isFacingLeft && animationStateInfo.fullPathHash == knightSkeletonWalkingHash))
@@ -65,10 +69,11 @@ public class RayPlayerDetectionScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (behindSkeletonPlayerDetectionBoxCollider != null && collision.gameObject.CompareTag("Player"))
+        if ( collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("There is a player behind you!");
             enemyMovement.flipCharacter();
+            
         }
     }
 }

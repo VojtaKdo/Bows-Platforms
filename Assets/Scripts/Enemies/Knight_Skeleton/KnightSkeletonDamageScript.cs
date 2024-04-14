@@ -12,6 +12,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
     public HealthBarScript healthBar;
     public GameObject attackTrigger;
     public Animator knightSkeletonAnimator;
+    public GameObject collisionDetection;
     public int knightSkeletonAttackHash;
     public int knightSkeletonAttackEndHash;
     public int knightSkeletonWalkingHash;
@@ -25,7 +26,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
         enemyMovement = GetComponentInParent<enemyMovementScript>();
     }
     void Update()
-    {
+    { 
         playerStatsScript = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStatsScript>();
         healthBar = GameObject.FindGameObjectWithTag("PlayerUI")?.GetComponentInChildren<HealthBarScript>();
         knightSkelStats = GetComponentInParent<knightSkeletonStats>();
@@ -33,11 +34,11 @@ public class KnightSkeletonDamageScript : MonoBehaviour
         knightSkeletonAnimator.SetBool("isKnightSkeletonAttacking", enemyStats.isEnemyAttacking);
         animationStateInfo = knightSkeletonAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
 
+        //Pokud nepøítel dokonèí útok a hráè není nesmrtelný, tak udìlá knightSkeletonDamage hráèi
         if (animationStateInfo.fullPathHash == knightSkeletonAttackEndHash && !playerStatsScript.isPlayerInvincible && enemyStats.isEnemyAttacking)
         {
+            Debug.Log("Skeleton is attacking!");
             PlayerStatsScript.playerHP -= knightSkelStats.knightSkeletonDamage;
-            healthBar.UpdateHealthBarImage(PlayerStatsScript.playerHP, PlayerStatsScript.playerMaxHP);
-            StartCoroutine(playerStatsScript.PlayerInvicibility());
         }
 
         else if (animationStateInfo.fullPathHash == knightSkeletonAttackHash || animationStateInfo.fullPathHash == knightSkeletonAttackEndHash) {
@@ -55,6 +56,8 @@ public class KnightSkeletonDamageScript : MonoBehaviour
     { 
         attackTrigger = knightSkeletonPrefab.transform.Find("attackTrigger").gameObject;
     }
+
+    //Pokud hráè vleze do attackTriggeru, tak zaène nepøítel útoèit
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -65,6 +68,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
         }
     }
 
+    //Pokud hráèùv damageHitbox vyleze z attackTriggeru, tak pøestane nepøítel útoèit
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("getDamageHitbox"))

@@ -172,6 +172,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   attackTrigger: {fileID: 698293067270746587}
   knightSkeletonAnimator: {fileID: 1264211215577493185}
+  collisionDetection: {fileID: 9044382909600722680}
   knightSkeletonAttackHash: 0
   knightSkeletonAttackEndHash: 0
   knightSkeletonWalkingHash: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   knightSkelStats: {fileID: 0}
   behindSkeletonPlayerDetectionBoxCollider: {fileID: 0}
   rayPlayerDetectionGameObject: {fileID: 2102403754221796450}
+  groundDetection: {fileID: 0}
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -278,96 +280,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.02}
   m_EdgeRadius: 0
---- !u!1 &3917762275909742650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8891841307911665917}
-  - component: {fileID: 4477995997656901948}
-  - component: {fileID: 2525829819456731034}
-  m_Layer: 7
-  m_Name: groundDetection
-  m_TagString: groundDetection
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8891841307911665917
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917762275909742650}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.831, y: -0.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 549602846388666851}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4477995997656901948
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917762275909742650}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.37, y: -0.66}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.31}
-  m_EdgeRadius: 0
---- !u!114 &2525829819456731034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917762275909742650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d24bfb0ea615f843b5e69c5a54db6f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5144999095249874250
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +612,7 @@ GameObject:
   - component: {fileID: 3483957188227254827}
   - component: {fileID: 1971327614135160774}
   - component: {fileID: 4346195750465534641}
-  - component: {fileID: 4743163235422892502}
+  - component: {fileID: 230856495643226515}
   - component: {fileID: 3866387476567282714}
   - component: {fileID: 1264211215577493185}
   m_Layer: 7
@@ -719,12 +631,11 @@ Transform:
   m_GameObject: {fileID: 7197060372984340255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.49, y: 0.22, z: -1.8379923}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 48.83, y: 12.11, z: -1.8379923}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 78741172861465064}
-  - {fileID: 8891841307911665917}
   - {fileID: 31014785272654392}
   - {fileID: 235831951195042996}
   - {fileID: 3681852063888860490}
@@ -743,7 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRigidBody: {fileID: 0}
-  groundCollision: {fileID: 3917762275909742650}
+  groundCollision: {fileID: 0}
   isFacingLeft: 0
   facingValue: 1
 --- !u!114 &3483957188227254827
@@ -836,8 +747,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4743163235422892502
-BoxCollider2D:
+--- !u!70 &230856495643226515
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -868,19 +779,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1.21875}
-    newSize: {x: 0.13, y: 0.01}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
+  m_Offset: {x: 0, y: -0.09}
   m_Size: {x: 0.6, y: 1.04}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!50 &3866387476567282714
 Rigidbody2D:
   serializedVersion: 4
@@ -896,7 +797,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1031,7 +932,7 @@ Transform:
   m_GameObject: {fileID: 9044382909600722680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.65, y: 0, z: 0}
+  m_LocalPosition: {x: 0.577, y: -0.144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1044,7 +945,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9044382909600722680}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1080,7 +981,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.5}
+  m_Size: {x: 0.2, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &3766618542237156682
 MonoBehaviour:
@@ -1094,3 +995,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74939a4170982941876c400e5a99aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 0}
+  boxSize: {x: 0.01, y: 2}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 72
+  knightSkeletonAnimator: {fileID: 1264211215577493185}
+  knightSkeletonWalkingHash: 0

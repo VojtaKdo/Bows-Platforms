@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class PlayButtonScript : MonoBehaviour
 {
     //Start hry
+    public static int Level;
     public static void GameStart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerTutorialScript.tutorialProgress = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Level + 1);
     }
 }

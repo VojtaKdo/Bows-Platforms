@@ -46,7 +46,8 @@ public class ArrowScript : MonoBehaviour
         {
             isDestroyed = false;
         }
-        else{
+        else
+        {
             OnDestroy();
             Destroy(gameObject);
             isDestroyed = true;

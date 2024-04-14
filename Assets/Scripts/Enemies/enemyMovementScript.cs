@@ -9,21 +9,41 @@ public class enemyMovementScript : MonoBehaviour
     EnemyStatsScript enemyStats;
     public bool isFacingLeft;
     public float facingValue = 1;
+    //public float previousPositionY;
     // Start is called before the first frame update
     void Start()
     {
         //ZÌsk·nÌ scriptu a rigidBody2D pro kaûdÈho nep¯Ìtele zvl·öù
         enemyRigidBody = GetComponent<Rigidbody2D>();
         enemyStats = GetComponent<EnemyStatsScript>();
+
+        //previousPositionY = transform.position.y;
     }
 
     // Update is called once per frame 
     void Update()
     {
+        //float currentPositionY = transform.position.y;
+
+        
         if (enemyRigidBody != null && enemyStats != null)
         {
             
             enemyRigidBody.velocity = new Vector2(enemyStats.enemyMovementSpeed, 0f);
+
+            //ZvÏtöuje se pozice Y
+           /* if (currentPositionY > previousPositionY)
+            {
+                enemyRigidBody.gravityScale = 1f;
+            }
+
+            //Zmenöuje se pozice Y
+            else if (currentPositionY < previousPositionY)
+            {
+                enemyRigidBody.gravityScale = 15f;
+            }
+
+            previousPositionY = currentPositionY;*/
         }
     }
 

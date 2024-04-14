@@ -10,7 +10,7 @@ Platform hra v developmentu
 <p>- WE ARE STILL HERE</p>
 
 <h3>Level 2</h3>
-<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/95b13876-de49-4d74-969e-7c8f03677ca8" alt="Prototyp" width="500px"/>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/95b13876-de49-4d74-969e-7c8f03677ca8" alt="Prototyp" width="1004px"/>
 
 <h4>Detekce nepřítele předtím</h4>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/f9b3fc2f-7aeb-47e3-8afe-deea56a39616" alt="Prototyp" width="500px"/>

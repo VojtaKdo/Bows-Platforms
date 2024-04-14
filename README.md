@@ -3,6 +3,7 @@ Platform hra v developmentu
 
 <h1>Update 0.3.0 | 14. 04. 2024</h1>
 <p>- přidán <b>Level 2</b> (Level 1 dodělávám)</p>
+<p>- přidán ukazatel nabytí tvého dashe pod HP barem</p>
 <p>- vylepšena detekce země pro nepřátele</p>
 <p>- přidány spikes, který dělají poškození hráčovi, pokud na nich stojí</p>
 <p>- WE ARE STILL HERE</p>

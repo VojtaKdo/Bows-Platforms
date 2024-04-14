@@ -6,6 +6,7 @@ Platform hra v developmentu
 <p>- přidán ukazatel nabytí tvého dashe pod HP barem</p>
 <p>- vylepšena detekce země pro nepřátele</p>
 <p>- přidány spikes, který dělají poškození hráčovi, pokud na nich stojí</p>
+<p>- <a href="https://szadiart.itch.io/pixel-fantasy-caves">Tilemap</a> od Szadi art</p>
 <p>- WE ARE STILL HERE</p>
 
 <h3>Level 2</h3>

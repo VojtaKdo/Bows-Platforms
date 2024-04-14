@@ -6,7 +6,7 @@ Platform hra v developmentu
 <p>- přidán ukazatel nabytí tvého dashe pod HP barem</p>
 <p>- vylepšena detekce země pro nepřátele</p>
 <p>- přidány spikes, který dělají poškození hráčovi, pokud na nich stojí</p>
-<p>- <a href="https://szadiart.itch.io/pixel-fantasy-caves">Tilemap</a> od Szadi art</p>
+<p>- <a href="https://szadiart.itch.io/pixel-fantasy-caves">Tilemap</a> od <a href="https://szadiart.itch.io/">Szadi art</a></p>
 <p>- WE ARE STILL HERE</p>
 
 <h3>Level 2</h3>
@@ -79,7 +79,7 @@ Platform hra v developmentu
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/fc105d59-b363-42ee-a378-7bffd684d367" alt="Prototyp" width="500px"/>
 
 <h1>Update 0.0.2 | 7. 10. 2023</h1>
-<p>- přídán TileMap (https://anokolisa.itch.io/sidescroller-pixelart-sprites-asset-pack-forest-16x16)</p>
+<p>-<a href="https://anokolisa.itch.io/sidescroller-pixelart-sprites-asset-pack-forest-16x16">TileMap</a> od <a href="https://anokolisa.itch.io/">Anokolisa</a></p>
 <p>- přidány kolize TileMapy a hráče</p>
 <p>- přidán základní pohyb</p>
 <p>- přidána kamera, která se pohybuje s hráčem</p>

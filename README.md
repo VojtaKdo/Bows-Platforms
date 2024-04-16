@@ -3,7 +3,7 @@ Platform hra v developmentu
 
 <h1>Update 0.4.0 | 16. 04. 2024</h1>
 <p>- přidán <b>Level 1</b></p>
-<p>- přidán lokální ukládání</p>
+<p>- přidáno lokální ukládání</p>
 <p>- předěláno Main Menu</p>
 <p>- přidáno Credits Menu</p>
 

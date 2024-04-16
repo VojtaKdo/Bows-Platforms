@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SceneEndTranstionControllerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    SceneStartTransitionControllerScript SceneStartTransitionController;
     PlayerMovementScript playerMovement;
+    HealthBarScript healthBar;
     public float fadeDuration = 1.0f; // Duration of the fade effect
     public float holdDuration = 1.0f; // Duration to hold the screen black
     public Color fadeColor = Color.black; // Color to fade to
@@ -18,6 +18,7 @@ public class SceneEndTranstionControllerScript : MonoBehaviour
     void Start()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementScript>();
+        healthBar = GameObject.FindGameObjectWithTag("PlayerUI").GetComponentInChildren<HealthBarScript>();
         StartCoroutine(EndTranstion());
     }
 
@@ -25,6 +26,7 @@ public class SceneEndTranstionControllerScript : MonoBehaviour
     {
         // Hold black screen
         playerMovement.canMove = false;
+        healthBar.UpdateHealthBarImage(PlayerStatsScript.playerHP, PlayerStatsScript.playerMaxHP);
 
         yield return new WaitForSeconds(holdDuration);
 
@@ -33,6 +35,8 @@ public class SceneEndTranstionControllerScript : MonoBehaviour
          
 
         yield return new WaitForSeconds(fadeDuration / 2);
+
+        transitionImage.enabled = false;
 
         playerMovement.canMove = true;
     }

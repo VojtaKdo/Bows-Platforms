@@ -10,6 +10,7 @@ public class PlayerTutorialScript : MonoBehaviour
 
     [Header("Tutorial Images")]
     [SerializeField] PlayerDamageScript playerDamage;
+    [SerializeField] PlayerMovementScript playerMovement;
     public GameObject leftrightTutorialImage;
     public GameObject dashTutorialImage;
     public GameObject jumpTutorialImage;
@@ -34,13 +35,15 @@ public class PlayerTutorialScript : MonoBehaviour
         {
             playerDamage = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerDamageScript>();
         }
+        if (playerMovement == null) {
+            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerMovementScript>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(tutorialProgress);
-        if (tutorialProgress == 1 && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        if (tutorialProgress == 1 && playerMovement.horizontal > 0)
         {
             DisableImages();
         }

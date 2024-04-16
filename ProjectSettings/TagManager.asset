@@ -27,6 +27,7 @@ TagManager:
   - OneWayPlatform
   - SpawnEnemyTrigger
   - EscapeMenu
+  - MainMenu
   layers:
   - Default
   - TransparentFX

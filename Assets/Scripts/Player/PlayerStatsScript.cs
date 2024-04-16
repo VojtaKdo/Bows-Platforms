@@ -44,7 +44,9 @@ public class PlayerStatsScript : MonoBehaviour
         //Když hráè umøe, tak se respawne v tom stejným levelu
         if (playerHP <= 0) {    //trolled
             Debug.Log("Player left");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(0);
+            PlayerPrefs.DeleteAll();
+            MainMenuScript.NewGameCreated = false;
             playerHP = playerMaxHP;
         }
 

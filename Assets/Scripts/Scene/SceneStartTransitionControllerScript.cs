@@ -24,7 +24,6 @@ public class SceneStartTransitionControllerScript : MonoBehaviour
         transitionImage.enabled = true;
         yield return FadeImage(transitionImage, 0f, 0f);
         yield return FadeImage(transitionImage, 1f, fadeDuration / 2);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

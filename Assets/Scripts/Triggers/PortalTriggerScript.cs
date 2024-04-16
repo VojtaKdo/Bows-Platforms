@@ -17,7 +17,10 @@ public class PortalTriggerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && SceneStartTransitionController != null) {
             SceneStartTransitionController.transitionImage.enabled = true;
-            PlayButtonScript.Level += 1;
+            MainMenuScript.Level += 1;
+            MainMenuScript.NewGameCreated = true;
+            PlayerPrefs.SetFloat("playerHP", PlayerStatsScript.playerHP);
+            PlayerPrefs.SetInt("Level", MainMenuScript.Level);
             StartCoroutine(SceneStartTransitionController.StartTransition());
         }
     }

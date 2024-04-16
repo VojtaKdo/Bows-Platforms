@@ -1,6 +1,21 @@
 # Platformer
 Platform hra v developmentu
 
+<h1>Update 0.4.0 | 16. 04. 2024</h1>
+<p>- přidán <b>Level 1</b></p>
+<p>- přidán lokální ukládání</p>
+<p>- předěláno Main Menu</p>
+<p>- přidáno Credits Menu</p>
+
+<h3>Level 1</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/af44fb17-9b15-4730-bbf0-93c33716d0d9" alt="Prototyp" width="1020px"/>
+
+<h3>Main Menu</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/e1a0cbef-9d8b-4ec1-bdac-b2c68a02dbef" alt="Prototyp" width="500px"/>
+
+<h3>Credits Menu</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/8e38472f-4eb8-47e7-891d-5f59adde1b91" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.3.0 | 14. 04. 2024</h1>
 <p>- přidán <b>Level 2</b> (Level 1 dodělávám)</p>
 <p>- přidán ukazatel nabytí tvého dashe pod HP barem</p>

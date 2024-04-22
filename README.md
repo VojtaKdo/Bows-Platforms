@@ -1,6 +1,11 @@
 # Platformer
 Platform hra v developmentu
 
+<h1>Update 1.0.0 | 22. 04. 2024</h1>
+<p>- přidán Boss Level</p>
+<p>- spraveny animace hráče při padání</p>
+<p>- přidán nový nepřítel <b>The Grim Reaper</b></p>
+
 <h1>Update 0.4.0 | 16. 04. 2024</h1>
 <p>- přidán <b>Level 1</b></p>
 <p>- přidáno lokální ukládání</p>

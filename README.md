@@ -17,7 +17,7 @@ Platform hra v developmentu
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/b391368e-b4a5-47c6-a967-559d4a25bb31" alt="Prototyp" width="1000px"/>
 
 <h2>Grim Reaper</h2>
-<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/fc28952d-6728-4b66-98b1-d0bdeb8f0e1e" alt="Prototyp" width="500px"/>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/fc28952d-6728-4b66-98b1-d0bdeb8f0e1e" alt="Prototyp" width="800px"/>
 
 <h3>Settings menu v Main menu</h3>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/deb38222-54a2-47b2-a218-c98a23d1ec3f" alt="Prototyp" width="500px"/>

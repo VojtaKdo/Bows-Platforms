@@ -2,9 +2,21 @@
 Platform hra v developmentu
 
 <h1>Update 1.0.0 | 22. 04. 2024</h1>
+<p>- Download <b><a href="https://drive.google.com/file/d/1-WSygQZO8Sy6PaMGHQRRIEioC-iAOx83/view?usp=sharing">HERE</a></b></p>
 <p>- přidán Boss Level</p>
-<p>- spraveny animace hráče při padání</p>
 <p>- přidán nový nepřítel <b>The Grim Reaper</b></p>
+<p>- spraveny animace hráče při padání</p>
+<p>- přidáno Settings menu na nastavení zvuku</p>
+<p>- přidáno Pause menu - zmáčknutím <b>Escape</b> při hraní hry se pauzne hra</p>
+<p>- přidáno Settings menu do Pause menu</p>
+<p>- přidání nových členů do Credits menu</p>
+<p>- spraveno lokální ukládání</p>
+
+<h3>Settings menu v Main menu</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/deb38222-54a2-47b2-a218-c98a23d1ec3f" alt="Prototyp" width="500px"/>
+
+<h3>Settings menu ve hře</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/3c1884c4-07e5-4d6a-96c8-2dd28b9e5dcd" alt="Prototyp" width="500px"/>
 
 <h1>Update 0.4.0 | 16. 04. 2024</h1>
 <p>- přidán <b>Level 1</b></p>

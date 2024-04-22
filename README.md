@@ -25,6 +25,9 @@ Platform hra v developmentu
 <h3>Settings menu ve hře</h3>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/3c1884c4-07e5-4d6a-96c8-2dd28b9e5dcd" alt="Prototyp" width="500px"/>
 
+<h3>Spravená animace při padání</h3>
+<img src="https://github.com/VojtaKdo/Platformer/assets/115611828/5a89cdf6-5997-4b14-a762-eec76169cd7c" alt="Prototyp" width="500px"/>
+
 <h1>Update 0.4.0 | 16. 04. 2024</h1>
 <p>- přidán <b>Level 1</b></p>
 <p>- přidáno lokální ukládání</p>

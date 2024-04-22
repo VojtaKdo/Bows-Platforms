@@ -5,7 +5,6 @@ using UnityEngine;
 public class enemyMovementScript : MonoBehaviour
 {
     public Rigidbody2D enemyRigidBody;
-    public GameObject groundCollision;
     EnemyStatsScript enemyStats;
     public bool isFacingLeft;
     public float facingValue = 1;
@@ -59,10 +58,5 @@ public class enemyMovementScript : MonoBehaviour
                 enemyStats.enemyMovementSpeed = -enemyStats.enemyMovementSpeed;
             }
         }
-    }
-     
-    public bool Grounded()
-    {    //vrací hodnotu, když se kruh o polomìru 0.2f dotkne groundLayer
-        return Physics2D.OverlapCircle(groundCollision.transform.position, 0.2f, enemyStats.groundLayer);
     }
 }

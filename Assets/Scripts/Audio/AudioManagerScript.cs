@@ -9,7 +9,8 @@ public class AudioManagerScript : MonoBehaviour
     [SerializeField] AudioSource SFXSource;
 
     [Header("Audio Clip")]
-    public AudioClip backgroudnMusic;
+    public AudioClip backgroundMusic;
+    public AudioClip bossMusic;
     public AudioClip bowString;
     public AudioClip bowShoot;
     public AudioClip chargeShot;
@@ -18,7 +19,7 @@ public class AudioManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicSource.clip = backgroudnMusic;
+        musicSource.clip = backgroundMusic;
         musicSource.Play();
     }
 
@@ -29,5 +30,14 @@ public class AudioManagerScript : MonoBehaviour
     public void StopSFX()
     {
         SFXSource.Stop();
+    }
+
+    public void PlayMusic(AudioClip musicClip) {
+        musicSource.clip = musicClip;
+        musicSource.Play();
+    }
+
+    public void StopMusic() {
+        musicSource.Stop();
     }
 }

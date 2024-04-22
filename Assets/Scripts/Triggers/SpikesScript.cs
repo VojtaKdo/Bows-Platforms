@@ -23,7 +23,7 @@ public class SpikesScript : MonoBehaviour
 
     //Pokud se hráè dotkne spikes a není nesmrtelný, tak se spustí doSpikeDamage()
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Player") && !playerStats.isPlayerInvincible)
+        if (collision.gameObject.CompareTag("Player") && !PlayerStatsScript.isPlayerInvincible)
         {
             StartCoroutine(doSpikeDamage());
         }

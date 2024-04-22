@@ -6,6 +6,7 @@ public class ObjectCheckScript : MonoBehaviour
 {
     public int numberOfSpawnEnemyTriggers;
     public int numberOfKnightSkeletons;
+    public int numberOfBosses;
     public GameObject Portal;
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,9 @@ public class ObjectCheckScript : MonoBehaviour
     {
         numberOfSpawnEnemyTriggers = GameObject.FindGameObjectsWithTag("SpawnEnemyTrigger").Length;
         numberOfKnightSkeletons = GameObject.FindGameObjectsWithTag("knightSkeleton").Length;
+        numberOfBosses = GameObject.FindGameObjectsWithTag("Boss").Length;
 
-        if(numberOfSpawnEnemyTriggers == 0 && numberOfKnightSkeletons == 0) { 
+        if(numberOfSpawnEnemyTriggers == 0 && numberOfKnightSkeletons == 0 && numberOfBosses == 0) { 
             Portal.SetActive(true);
         }
     }

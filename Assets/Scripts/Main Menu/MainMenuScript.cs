@@ -1,35 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
     //Start hry
+    public SettingsMenuScript settingsMenu;
     public static int Level;
-    public static bool NewGameCreated = false;
     public GameObject MainMenu;
     public GameObject CreditsMenu;
+    public GameObject SettingsMenu;
 
+    void Start()
+    {
+        settingsMenu.LoadVolume();
+        Cursor.visible = true;
+    }
     public static void NewGame()
     {
-        NewGameCreated = false;
+        Cursor.visible = false;
         PlayerTutorialScript.tutorialProgress = 0;
         PlayerStatsScript.playerHP = PlayerStatsScript.playerMaxHP;
+        float musicVolume = PlayerPrefs.GetFloat("musicVolume");
+        float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);
+        PlayerPrefs.SetFloat("musicVolume", musicVolume);
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+        PlayerPrefs.SetInt("Level", 1);
+        Level = PlayerPrefs.GetInt("Level");
+        SceneManager.LoadScene(Level);
     }
 
     public static void LoadGame() {
-        if (NewGameCreated)
+        if (PlayerPrefs.GetInt("NewGameCreated") == 1)
         {
+            Cursor.visible = false;
             float playerSavedHP = PlayerPrefs.GetFloat("playerHP");
             PlayerStatsScript.playerHP = playerSavedHP;
-            SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1);
-            Debug.Log(PlayerPrefs.GetInt("Level") + 1); 
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Level"));
         }
-        else {
-            Debug.Log("New game wasn't created!");
+        else { 
+            Debug.Log("New game isn't created!");
         }
     }
 
@@ -42,6 +56,11 @@ public class MainMenuScript : MonoBehaviour
     public void OpenCreditsMenu() { 
         MainMenu.SetActive(false);
         CreditsMenu.SetActive(true);
+    }
+
+    public void OpenSettingsMenu() {
+        MainMenu.SetActive(false);
+        SettingsMenu.SetActive(true);
     }
 
     public void SzadiArt() {
@@ -65,8 +84,14 @@ public class MainMenuScript : MonoBehaviour
         Application.OpenURL("https://chriskohler.net/");
     }
 
+    public void JohnLeonardFrench()
+    {
+        Application.OpenURL("https://johnleonardfrench.com/");
+    }
+
     public void Back() {
         MainMenu.SetActive(true);
         CreditsMenu.SetActive(false);
+        SettingsMenu.SetActive(false);
     }
 }

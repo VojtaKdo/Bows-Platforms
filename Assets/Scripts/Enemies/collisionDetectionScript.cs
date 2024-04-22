@@ -9,8 +9,9 @@ public class collisionDetectionScript : MonoBehaviour
     public EnemyStatsScript enemyStats;
     public Vector2 boxSize = new Vector2(1f, 1f);
     public LayerMask groundLayer;
-    public Animator knightSkeletonAnimator;
+    public Animator enemyAnimator;
     public int knightSkeletonWalkingHash;
+    public int bossWalkingHash;
     public AnimatorStateInfo animationStateInfo;
 
     void Start()
@@ -18,12 +19,13 @@ public class collisionDetectionScript : MonoBehaviour
         enemyMovement = GetComponentInParent<enemyMovementScript>();
         enemyStats = GetComponentInParent<EnemyStatsScript>();
         knightSkeletonWalkingHash = Animator.StringToHash("KnightSkeletonLayer.Knight_Walking");
+        bossWalkingHash = Animator.StringToHash("BossLayer.Boss_Walking");
     }
 
     // Update is called once per frame
     void Update()
     {
-        animationStateInfo = knightSkeletonAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
+        animationStateInfo = enemyAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
 
         //Vykreslí box a uloží všechno, èeho se dotkne, do colliders
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, boxSize, 0f, groundLayer);
@@ -31,9 +33,8 @@ public class collisionDetectionScript : MonoBehaviour
         DebugDrawBox(transform.position, boxSize, Color.blue);
 
         //Zjistí, jestli tam jsou nìjaký collidery, pokud se nièeho nedotýká(vzduch)
-        if (colliders.Length == 0 && !enemyStats.isEnemyAttacking && animationStateInfo.fullPathHash == knightSkeletonWalkingHash)
+        if (colliders.Length == 0 && !enemyStats.isEnemyAttacking && (animationStateInfo.fullPathHash == knightSkeletonWalkingHash || animationStateInfo.fullPathHash == bossWalkingHash))
         {
-            Debug.Log("No Colliders!");
             enemyMovement.flipCharacter();
         }
     }

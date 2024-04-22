@@ -11,7 +11,8 @@ public class SceneStartTransitionControllerScript : MonoBehaviour
     public float holdDuration = 1.0f; // Duration to hold the screen black
     public Color fadeColor = Color.black; // Color to fade to
     public Image transitionImage; // Reference to the Image component
-    public Image backgroundImage; // Reference to the Image component
+    public Text saveText;
+    public GameObject Tutorial;
 
     void Start()
     {
@@ -21,7 +22,10 @@ public class SceneStartTransitionControllerScript : MonoBehaviour
     {
         // Fade in
         playerMovement.canMove = false;
+        PlayerUIScript.canOpenEscapeMenu = false;
         transitionImage.enabled = true;
+        saveText.enabled = true;
+        Tutorial.SetActive(false);
         yield return FadeImage(transitionImage, 0f, 0f);
         yield return FadeImage(transitionImage, 1f, fadeDuration / 2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

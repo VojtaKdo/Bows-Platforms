@@ -6,25 +6,43 @@ using UnityEngine.UI;
 public class SpawnEnemyTriggerScript : MonoBehaviour
 {
     HealthBarScript healthBar;
+    public AudioManagerScript audioManager;
     public GameObject spawnEnemy;
-    public GameObject knightSkeletonPrefab;
+    public GameObject enemyPrefab;
     public GameObject[] numberOfEnemies;
     public float spawnRange;
 
+    void Start()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponentInParent<AudioManagerScript>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Trigger na spawnování nepøátelù
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Enemy Spawned!");
-            GameObject newKnightSkeleton = SpawnEnemy(knightSkeletonPrefab);
+            GameObject enemy = SpawnEnemy(enemyPrefab);
 
-            KnightSkeletonDamageScript knightSkeletonDMGscript = newKnightSkeleton.GetComponent<KnightSkeletonDamageScript>();
+            KnightSkeletonDamageScript knightSkeletonDMGscript = enemy.GetComponent<KnightSkeletonDamageScript>();
+            BossDamageScript bossKnightDMGScript = enemy.GetComponent<BossDamageScript>();
 
             if (knightSkeletonDMGscript != null)
             {
-                knightSkeletonDMGscript.AssignAttackTrigger(newKnightSkeleton);
+                knightSkeletonDMGscript.AssignAttackTrigger(enemy);
             }
+            if (bossKnightDMGScript != null)
+            {
+                bossKnightDMGScript.AssignAttackTrigger(enemy);
+            }
+
+            if (PlayerPrefs.GetInt("Level") == 4)
+            {
+                Debug.Log("Boss music!");
+                audioManager.StopMusic();
+                audioManager.PlayMusic(audioManager.bossMusic);
+            }
+
             Destroy(this);
             Destroy(gameObject);
         }
@@ -39,7 +57,7 @@ public class SpawnEnemyTriggerScript : MonoBehaviour
             //Spawne se nìpøítel v pøedurèeném rozmezí a uloží se do newKnightSkeleton
             foreach (GameObject enemies in numberOfEnemies)
             {
-                GameObject newKnightSkeleton = Instantiate(enemies, new Vector3(Random.Range(spawnEnemy.transform.position.x + spawnRange, spawnEnemy.transform.position.x - spawnRange), Random.Range(spawnEnemy.transform.position.y, spawnEnemy.transform.position.y), 0), Quaternion.identity);
+                GameObject newEnemy = Instantiate(enemies, new Vector3(Random.Range(spawnEnemy.transform.position.x + spawnRange, spawnEnemy.transform.position.x - spawnRange), Random.Range(spawnEnemy.transform.position.y, spawnEnemy.transform.position.y), 0), Quaternion.identity);
             }
 
             //Získáme scripty pro každého nepøítele vlastní

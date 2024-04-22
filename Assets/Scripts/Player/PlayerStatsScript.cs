@@ -19,7 +19,7 @@ public class PlayerStatsScript : MonoBehaviour
     public float playerDashingCooldown = 0.2f;
     public float playerNumberOfDashes = 1;
     public float playerDashesAvailable = 1;
-    public bool isPlayerInvincible;
+    public static bool isPlayerInvincible;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerStatsScript : MonoBehaviour
     }
 
     //Každých 0,5 vteøin se mu dá nesmrtelnost
-    public IEnumerator PlayerInvicibility() {
+    public static IEnumerator PlayerInvicibility() {
         Debug.Log("Player is invincible"); 
         isPlayerInvincible = true;
         yield return new WaitForSeconds(0.5f); 
@@ -45,9 +45,11 @@ public class PlayerStatsScript : MonoBehaviour
         if (playerHP <= 0) {    //trolled
             Debug.Log("Player left");
             SceneManager.LoadScene(0);
+            float musicVolume = PlayerPrefs.GetFloat("musicVolume");
+            float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
             PlayerPrefs.DeleteAll();
-            MainMenuScript.NewGameCreated = false;
-            playerHP = playerMaxHP;
+            PlayerPrefs.SetFloat("musicVolume", musicVolume);
+            PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
         }
 
         //Pokud se zmìní hráèovi životy, tak se mu dá nesmrtelnost a aktualizuje se mu hpBar

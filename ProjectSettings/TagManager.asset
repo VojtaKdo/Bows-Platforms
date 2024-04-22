@@ -28,6 +28,10 @@ TagManager:
   - SpawnEnemyTrigger
   - EscapeMenu
   - MainMenu
+  - Boss
+  - SummonsSpawn
+  - BossTitle
+  - SettingsMenu
   layers:
   - Default
   - TransparentFX

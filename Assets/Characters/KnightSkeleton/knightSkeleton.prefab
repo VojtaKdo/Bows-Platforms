@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 31014785272654392}
   - component: {fileID: 7342886832444525925}
   - component: {fileID: 5156346903889428996}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: attackTrigger
   m_TagString: attackTrigger
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 235831951195042996}
   - component: {fileID: 692300589757748106}
   - component: {fileID: 3625146350076676943}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: rayPlayerDetectionFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 7197060372984340255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.83, y: 12.11, z: -1.8379923}
+  m_LocalPosition: {x: -11.16, y: 6.13, z: -1.8379923}
   m_LocalScale: {x: 1.8, y: 1.8, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -654,7 +654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRigidBody: {fileID: 0}
-  groundCollision: {fileID: 0}
   isFacingLeft: 0
   facingValue: 1
 --- !u!114 &3483957188227254827
@@ -916,7 +915,7 @@ GameObject:
   - component: {fileID: 78741172861465064}
   - component: {fileID: 2887110446393561843}
   - component: {fileID: 3766618542237156682}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: collisionDetection
   m_TagString: collisionDetection
   m_Icon: {fileID: 0}
@@ -1000,5 +999,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 72
-  knightSkeletonAnimator: {fileID: 1264211215577493185}
+  enemyAnimator: {fileID: 1264211215577493185}
   knightSkeletonWalkingHash: 0
+  bossWalkingHash: 0

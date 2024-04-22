@@ -154,6 +154,7 @@ public class PlayerMovementScript : MonoBehaviour
             IEnumerator Dash()
             {
                 isDashing = true;
+                PlayerStatsScript.isPlayerInvincible = true;
                 dashTrail.emitting = true;
                 canDash = false;
                 playerStats.playerDashesAvailable = playerStats.playerDashesAvailable + (playerStats.playerDashesAvailable - (playerStats.playerDashesAvailable + 1));
@@ -173,6 +174,7 @@ public class PlayerMovementScript : MonoBehaviour
                     playerRigidBody.gravityScale = originalGravity;
                 }*/
                 dashTrail.emitting = false;
+                PlayerStatsScript.isPlayerInvincible = false;
                 isDashing = false;
                 if (playerStats.playerDashesAvailable > 0)
                 {
@@ -190,7 +192,6 @@ public class PlayerMovementScript : MonoBehaviour
                 {
                     for (double timer = playerStats.playerDashingCooldown + 1; timer >= 0; timer -= Time.deltaTime)     //Každý 2 vteøiny se obnoví dash
                     {
-                        Debug.Log(timer);
                         dashChargeBar.UpdateChargeBarImage(timer-1, 2);
                         if (playerStats.playerDashesAvailable != currentdashesAvailable)  //Pokud dashne v prùbìhu èasu, co se mu obnovuje dash, tak se zaène èas poèítat od znova
                         {

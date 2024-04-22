@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,7 @@ public class SceneEndTranstionControllerScript : MonoBehaviour
     public float holdDuration = 1.0f; // Duration to hold the screen black
     public Color fadeColor = Color.black; // Color to fade to
     public Image transitionImage; // Reference to the Image component
-    public Image backgroundImage; // Reference to the Image component
+    public Text saveText;
 
     void Start()
     {
@@ -25,6 +24,7 @@ public class SceneEndTranstionControllerScript : MonoBehaviour
     public IEnumerator EndTranstion()
     {
         // Hold black screen
+        saveText.enabled = false;
         playerMovement.canMove = false;
         healthBar.UpdateHealthBarImage(PlayerStatsScript.playerHP, PlayerStatsScript.playerMaxHP);
 
@@ -39,6 +39,8 @@ public class SceneEndTranstionControllerScript : MonoBehaviour
         transitionImage.enabled = false;
 
         playerMovement.canMove = true;
+
+        PlayerUIScript.canOpenEscapeMenu = true;
     }
 
     public IEnumerator FadeImage(Image image, float targetAlpha, float duration)

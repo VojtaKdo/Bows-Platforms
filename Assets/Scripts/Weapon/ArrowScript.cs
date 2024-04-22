@@ -53,16 +53,23 @@ public class ArrowScript : MonoBehaviour
             isDestroyed = true;
         }
 
-        if (hitInfo.gameObject.CompareTag("knightSkeleton")) {
+        if (hitInfo.gameObject.layer == 7) {
             Debug.Log("Enemy Hit!");
 
             var knightSkelStats = hitInfo.gameObject.GetComponent<knightSkeletonStats>();
+            var bossStats = hitInfo.gameObject.GetComponent<BossStatsScript>();
             var healthBar = hitInfo.gameObject.GetComponentInChildren<HealthBarScript>();
 
             if (knightSkelStats && healthBar)
             {
                knightSkelStats.knightSkeletonHP -= playerStats.playerDamage;
                healthBar.UpdateHealthBarSlider(knightSkelStats.knightSkeletonHP, knightSkelStats.knightSkeletonMaxHP);
+            }
+
+            else if (bossStats && healthBar) {
+                Debug.Log("Boss hit!");
+                bossStats.bossHP -= playerStats.playerDamage;
+                healthBar.UpdateHealthBarSlider(bossStats.bossHP, bossStats.bossMaxHP);
             }
         }
         

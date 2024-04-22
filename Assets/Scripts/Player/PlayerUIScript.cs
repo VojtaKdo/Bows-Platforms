@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class PlayerUIScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject EscapeMenu;
+    public GameObject PauseMenu;
+    public GameObject SettingsMenu;
     public static bool GameIsPaused = false;
+    public static bool canOpenEscapeMenu; 
 
     void Start()
     {
@@ -17,14 +19,17 @@ public class PlayerUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && canOpenEscapeMenu) {
             if (GameIsPaused)
             {
-                EscapeMenu.SetActive(false);
+                Cursor.visible = false;
+                PauseMenu.SetActive(false);
+                SettingsMenu.SetActive(false);
                 ResumeGame();
             }
             else {
-                EscapeMenu.SetActive(true);
+                Cursor.visible = true;
+                PauseMenu.SetActive(true);
                 PauseGame();
             }
         }
@@ -35,8 +40,20 @@ public class PlayerUIScript : MonoBehaviour
     }*/
 
     public void MainMenu() {
+        canOpenEscapeMenu = false;
         SceneManager.LoadScene(0);
         ResumeGame();
+    }
+
+    public void OpenSettingsMenu()
+    {
+        PauseMenu.SetActive(false);
+        SettingsMenu.SetActive(true);
+    }
+
+    public void Back(){
+        SettingsMenu.SetActive(false);
+        PauseMenu.SetActive(true);
     }
 
     void PauseGame() {

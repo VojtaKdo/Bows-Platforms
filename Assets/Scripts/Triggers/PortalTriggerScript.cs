@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,9 +19,10 @@ public class PortalTriggerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && SceneStartTransitionController != null) {
             SceneStartTransitionController.transitionImage.enabled = true;
             MainMenuScript.Level += 1;
-            MainMenuScript.NewGameCreated = true;
             PlayerPrefs.SetFloat("playerHP", PlayerStatsScript.playerHP);
             PlayerPrefs.SetInt("Level", MainMenuScript.Level);
+            var NewGameCreated = true;
+            PlayerPrefs.SetInt("NewGameCreated", NewGameCreated ? 1 : 0);
             StartCoroutine(SceneStartTransitionController.StartTransition());
         }
     }

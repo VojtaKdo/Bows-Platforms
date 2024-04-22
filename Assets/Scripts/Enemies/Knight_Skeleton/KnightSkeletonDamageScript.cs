@@ -35,7 +35,7 @@ public class KnightSkeletonDamageScript : MonoBehaviour
         animationStateInfo = knightSkeletonAnimator.GetCurrentAnimatorStateInfo(0); //Pro zjištìní stavu animace, která zrovna hraje
 
         //Pokud nepøítel dokonèí útok a hráè není nesmrtelný, tak udìlá knightSkeletonDamage hráèi
-        if (animationStateInfo.fullPathHash == knightSkeletonAttackEndHash && !playerStatsScript.isPlayerInvincible && enemyStats.isEnemyAttacking)
+        if (animationStateInfo.fullPathHash == knightSkeletonAttackEndHash && !PlayerStatsScript.isPlayerInvincible && enemyStats.isEnemyAttacking)
         {
             Debug.Log("Skeleton is attacking!");
             PlayerStatsScript.playerHP -= knightSkelStats.knightSkeletonDamage;

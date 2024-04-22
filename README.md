@@ -1,4 +1,4 @@
-# Platformer
+# Bows & Platforms
 Platform hra v developmentu
 
 <h1>Update 1.0.0 | 22. 04. 2024</h1>

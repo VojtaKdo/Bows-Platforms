@@ -1,6 +1,11 @@
 # Bows & Platforms
 Platform hra v developmentu
 
+<h1>Update 1.0.1 - bug fixes | 23. 04. 2024</h1>
+<p>- spraven bug, kde bossHP bar překračoval přes Escape menu</p>
+<p>- spraven bug, kde tutorial se špatně ukazoval, když si nezmáčnul S při tutoriálu s padáním</p>
+<p>- nerfnut Skeleton Warrior DMG: 2 -> 1</p>
+
 <h1>Update 1.0.0 | 22. 04. 2024</h1>
 <p>- Download <b><a href="https://drive.google.com/file/d/1-WSygQZO8Sy6PaMGHQRRIEioC-iAOx83/view?usp=sharing">HERE</a></b></p>
 <p>- přidán Boss Level</p>

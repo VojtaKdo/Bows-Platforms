@@ -1,5 +1,6 @@
 # Bows & Platforms
 Platform hra v developmentu
+<h3>Download <a href="https://drive.google.com/file/d/18JKIJFKTPuc1FvmZLx_vjmfN4VrWybDI/view?usp=sharing">HERE</a></h3>
 
 <h1>Update 1.0.1 - bug fixes | 23. 04. 2024</h1>
 <p>- spraven bug, kde bossHP bar překračoval přes Escape menu</p>
@@ -8,7 +9,6 @@ Platform hra v developmentu
 <p>- nerfnut Skeleton Warrior DMG: 2 -> 1</p>
 
 <h1>Update 1.0.0 | 22. 04. 2024</h1>
-<p>- Download <b><a href="https://drive.google.com/file/d/1-WSygQZO8Sy6PaMGHQRRIEioC-iAOx83/view?usp=sharing">HERE</a></b></p>
 <p>- přidán Boss Level</p>
 <p>- přidán nový nepřítel <b>The Grim Reaper</b></p>
 <p>- spraveny animace hráče při padání</p>
@@ -18,7 +18,6 @@ Platform hra v developmentu
 <p>- přidání nových členů do Credits menu</p>
 <p>- spraveno lokální ukládání</p>
 
-<h2>Boss Level a The Grim Reaper</h2>
 <h2>Boss Level</h2>
 <img src="https://github.com/VojtaKdo/Platformer/assets/115611828/b391368e-b4a5-47c6-a967-559d4a25bb31" alt="Prototyp" width="1000px"/>
 

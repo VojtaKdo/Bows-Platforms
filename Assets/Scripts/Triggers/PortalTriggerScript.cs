@@ -22,7 +22,9 @@ public class PortalTriggerScript : MonoBehaviour
             PlayerPrefs.SetFloat("playerHP", PlayerStatsScript.playerHP);
             PlayerPrefs.SetInt("Level", MainMenuScript.Level);
             var NewGameCreated = true;
+            var TutorialLevelDone = true;
             PlayerPrefs.SetInt("NewGameCreated", NewGameCreated ? 1 : 0);
+            PlayerPrefs.SetInt("TutorialLevelDone", TutorialLevelDone ? 1 : 0);
             StartCoroutine(SceneStartTransitionController.StartTransition());
         }
     }

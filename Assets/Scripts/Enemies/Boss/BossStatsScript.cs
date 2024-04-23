@@ -15,8 +15,11 @@ public class BossStatsScript : MonoBehaviour
     public bool finalPhaseOnce = true;
     public bool isSummoning;
     // Start is called before the first frame update
+    public Canvas bossCanvas;
+
     void Start()
     {
+        bossCanvas.worldCamera = Camera.main;
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponentInParent<AudioManagerScript>();
     }
 

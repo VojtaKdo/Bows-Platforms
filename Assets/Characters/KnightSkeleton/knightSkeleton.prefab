@@ -670,7 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knightSkeletonHP: 10
   knightSkeletonMaxHP: 10
-  knightSkeletonDamage: 2
+  knightSkeletonDamage: 1
   agroOnce: 0
   isKnightSkeletonWalking: 0
 --- !u!114 &1971327614135160774
@@ -688,7 +688,7 @@ MonoBehaviour:
   enemyHP: 10
   enemyMaxHP: 10
   enemyMovementSpeed: 3
-  enemyDamage: 2
+  enemyDamage: 1
   enemyAttackSpeed: 0
   isEnemyAttacking: 0
   groundLayer:

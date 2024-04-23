@@ -19,19 +19,34 @@ public class MainMenuScript : MonoBehaviour
         settingsMenu.LoadVolume();
         Cursor.visible = true;
     }
+
+    void Update()
+    {
+        Debug.Log(PlayerPrefs.GetInt("TutorialLevelDone"));
+    }
     public static void NewGame()
     {
         Cursor.visible = false;
-        PlayerTutorialScript.tutorialProgress = 0;
         PlayerStatsScript.playerHP = PlayerStatsScript.playerMaxHP;
         float musicVolume = PlayerPrefs.GetFloat("musicVolume");
         float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
+        int TutorialLevelDone = PlayerPrefs.GetInt("TutorialLevelDone");
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
         PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
-        PlayerPrefs.SetInt("Level", 1);
-        Level = PlayerPrefs.GetInt("Level");
-        SceneManager.LoadScene(Level);
+        PlayerPrefs.SetInt("TutorialLevelDone", TutorialLevelDone);
+        if (PlayerPrefs.GetInt("TutorialLevelDone") == 0)
+        {
+            Debug.Log("Tutorial level isn't done " + PlayerPrefs.GetInt("TutorialLevelDone"));
+            PlayerPrefs.SetInt("Level", 1);
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Level"));
+            PlayerTutorialScript.tutorialProgress = 0;
+        }
+        if (PlayerPrefs.GetInt("TutorialLevelDone") == 1) {
+            Debug.Log("Tutorial level is done " + PlayerPrefs.GetInt("TutorialLevelDone"));
+            PlayerPrefs.SetInt("Level", 2);
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Level"));
+        }
     }
 
     public static void LoadGame() {

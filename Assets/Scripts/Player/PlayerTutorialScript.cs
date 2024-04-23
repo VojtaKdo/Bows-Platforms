@@ -89,6 +89,7 @@ public class PlayerTutorialScript : MonoBehaviour
         {
             case 5:
                 {
+                    descendTutorialImage.SetActive(false);
                     shootTrigger.transform.localScale = new Vector3(100, 100, 0);
                     if (tutorialProgress != 5)
                     {
